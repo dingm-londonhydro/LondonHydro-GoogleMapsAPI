@@ -1,32 +1,84 @@
+<meta http-equiv="refresh" content="10" >
+<!-- Refreshes every 10 seconds -->
+<div id="counterbox">
+  <p> How many seconds since last refresh: </p>
+  <p id="timer"> </p>
+</div>
+
 <div id="map_canvas"></div>
  
 <style>
-   #map_canvas {
-    height:100%;
+
+  #counterbox {
+    padding: 1em;
+    margin-left: 3em;
+    top: 2em;
+    display: flex;
+  }
+
+  #map_canvas {
+    height: 65%;
+    width: 65%;
+    left: 20%;
+    top: 10%;
   }
 </style>
  
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script>
+
+  var timer = document.getElementById('timer');
+  timeCount = 0;
+
+  // changes time every second
+  setInterval(function() {
+    timeCount++;
+    timer.innerHTML = timeCount; 
+  }, 1000);
+
+
   var mylocation = {
     'latitude':  42.9837,
     'longitude': -81.2497
   };
+
   var map;
+
   function initialize() {
+
     var myLatlng = new google.maps.LatLng( mylocation.latitude, mylocation.longitude );
+
     var mapOptions = {
       zoom: 11,
       center: myLatlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      zoomControl: true,
+      // made the zoom small style
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL
+      }
     }
     var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+    /*var londonLegend = '<img src="img/londonLegend.png" alt="legend of outage colours"> ';
+
+    var infoWindow = new google.maps.InfoWindow({
+      content: londonLegend;
+    });
+
+    infoWindow.open(map); */
+
     // This needs to be the Full URL - not a relative URL
     var kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
+
     // Add unique number to this url - as with images - to avoid caching issues during development
     var urlSuffix = (new Date).getTime().toString();
+
     var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
     layer.setMap(map);
+  
+ 
   }
+
   google.maps.event.addDomListener(window, 'load', initialize);
 </script>
