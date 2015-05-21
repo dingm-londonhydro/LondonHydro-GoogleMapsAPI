@@ -36,6 +36,7 @@
     // Add unique number to this url - as with images - to avoid caching issues during development
     var urlSuffix = (new Date).getTime().toString();
 
+    // calls it similar to an API call
     var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
     layer.setMap(map);
   }
