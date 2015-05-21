@@ -1,5 +1,3 @@
-<meta http-equiv="refresh" content="10" >
-<!-- Refreshes every 10 seconds -->
 <div id="counterbox">
   <p> How many seconds since last refresh: </p>
   <p id="timer"> </p>
@@ -33,7 +31,15 @@
   // changes time every second
   setInterval(function() {
     timeCount++;
-    timer.innerHTML = timeCount; 
+    timer.innerHTML = timeCount;
+
+      // calls the outages.kml file every 10 seconds to refresh
+      if (timeCount=10) {
+
+        layer.setMap(map);
+        timeCount = 0;
+      }
+
   }, 1000);
 
 
@@ -44,11 +50,38 @@
 
   var map;
 
+  /**
+ * The AddBox function adds the image to the map
+ * This constructor takes the control DIV as an argument.
+ * @constructor
+ */
+function AddBox(controlDiv, map) {
+
+  // Set CSS for the control border
+  var controlUI = document.createElement('div');
+  controlUI.style.backgroundColor = '#fff';
+  controlUI.style.border = '2px solid #fff';
+  controlUI.style.borderRadius = '3px';
+  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+  controlUI.style.marginBottom = '10px';
+  controlUI.style.marginRight = '15px';
+  controlDiv.appendChild(controlUI);  
+
+  // Set CSS for the control interior
+  var controlImg = document.createElement('div');
+  controlImg.innerHTML = '<img src="C:/Users/dingm/Desktop/Google Maps/img/londonLegend.png" alt="legend of London">';
+  controlUI.appendChild(controlImg); 
+
+}
+
   function initialize() {
+
 
     var myLatlng = new google.maps.LatLng( mylocation.latitude, mylocation.longitude );
 
     var mapOptions = {
+      maxZoom: 13,
+      minZoom: 10,
       zoom: 11,
       center: myLatlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -60,13 +93,6 @@
     }
     var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
-    /*var londonLegend = '<img src="img/londonLegend.png" alt="legend of outage colours"> ';
-
-    var infoWindow = new google.maps.InfoWindow({
-      content: londonLegend;
-    });
-
-    infoWindow.open(map); */
 
     // This needs to be the Full URL - not a relative URL
     var kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
@@ -76,6 +102,15 @@
 
     var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
     layer.setMap(map);
+
+     // Create the DIV to hold the control and
+      // call the AddBox() constructor passing
+      // in this DIV.
+    var addLegendDiv = document.createElement('div');
+    var legend = new AddBox(addLegendDiv, map);
+
+    addLegendDiv.index = 1;
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addLegendDiv);
   
  
   }
