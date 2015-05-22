@@ -100,8 +100,17 @@ function AddBox(controlDiv, map) {
     setInterval(function() {
       timeCount++;
       timer.innerHTML = timeCount;
-        if ((timeCount % 10) == 0) {
-         
+        if ((timeCount / 10) == 1) {
+
+        kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
+
+        // Add unique number to this url - as with images - to avoid caching issues during development
+        urlSuffix = (new Date).getTime().toString();
+
+        layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
+        layer.setMap(map);            
+
+         // what if there are no outages, would it display empty screen?
           outages = new google.maps.KmlLayer({
           url: "https://www.londonhydro.com/lhkmlcache/outage_polygons_live.kml"
         });
@@ -127,5 +136,8 @@ function AddBox(controlDiv, map) {
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
 
 </script>
