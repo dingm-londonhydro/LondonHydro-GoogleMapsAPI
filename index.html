@@ -108,7 +108,7 @@ function AddBox(controlDiv, map) {
         
         if ((timeCount / 10) == 1) {
          // what if there are no outages, would it display empty screen?
-          
+          outages.setMap(null);
           testKMLPath = "http://storage.googleapis.com/cloud-sql-dev/kml-test-outages/outage_polygons_2015_04_15.kml";
 
           urlSuffixTwo = (new Date).getTime().toString();
@@ -117,13 +117,15 @@ function AddBox(controlDiv, map) {
           outages = new google.maps.KmlLayer(testKMLPath + '?' +urlSuffixTwo);
           outages.set('preserveViewport', true);
           outages.setMap(map);
-        
+
           timeCount = 0;
               
            }
         
     }, 1000);
 
+
+    /* TRY OUT CASES INSTEAD OF IF */
 
      
     
