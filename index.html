@@ -90,7 +90,7 @@ function AddBox(controlDiv, map) {
     layer.setMap(map);
 
 
-    var testKMLPath = "http://storage.googleapis.com/cloud-sql-dev/kml-test-outages/outage_polygons_2015_04_15.kml";
+    var testKMLPath = "http://storage.googleapis.com/cloud-sql-dev/kml-test-outages/outage_polygons_2015_05_01.kml";
 
     var urlSuffixTwo = (new Date).getTime().toString();
 
@@ -105,24 +105,26 @@ function AddBox(controlDiv, map) {
     setInterval(function() {
       timeCount++;
       timer.innerHTML = timeCount;
+        
         if ((timeCount / 10) == 1) {
          // what if there are no outages, would it display empty screen?
           
-    testKMLPath = "http://storage.googleapis.com/cloud-sql-dev/kml-test-outages/outage_polygons_2015_04_15.kml";
+          testKMLPath = "http://storage.googleapis.com/cloud-sql-dev/kml-test-outages/outage_polygons_2015_04_15.kml";
 
-    urlSuffixTwo = (new Date).getTime().toString();
+          urlSuffixTwo = (new Date).getTime().toString();
 
-    // creates outages based on kml file
-    outages = new google.maps.KmlLayer(testKMLPath + '?' +urlSuffixTwo);
-    outages.set('preserveViewport', true);
-    outages.setMap(map);
+          // creates outages based on kml file
+          outages = new google.maps.KmlLayer(testKMLPath + '?' +urlSuffixTwo);
+          outages.set('preserveViewport', true);
+          outages.setMap(map);
+
+              
+           }
         
-        // resets the count too  
-        timeCount = 0;
-        }
     }, 1000);
 
 
+     
     
      // Create the DIV to hold the control and
       // call the AddBox() constructor passing
