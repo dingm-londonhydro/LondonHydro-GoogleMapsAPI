@@ -25,24 +25,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script>
 
-  var timer = document.getElementById('timer');
-  timeCount = 0;
-
- /* // changes time every second
-  setInterval(function() {
-    timeCount++;
-    timer.innerHTML = timeCount;
-
-      // calls the outages.kml file every 10 seconds to refresh
-      if (timeCount=10) {
-
-        layer.setMap(map);
-        timeCount = 0;
-      }
-
-  }, 1000); */
-
-
+  // London's coordinates
   var mylocation = {
     'latitude':  42.9837,
     'longitude': -81.2497
@@ -74,6 +57,7 @@ function AddBox(controlDiv, map) {
 
 }
 
+  // starts the program
   function initialize() {
 
 
@@ -103,6 +87,33 @@ function AddBox(controlDiv, map) {
     var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
     layer.setMap(map);
 
+    // creates outages based on kml file
+    var outages = new google.maps.KmlLayer({
+      url: "https://www.londonhydro.com/lhkmlcache/outage_polygons_live.kml"
+    });
+    outages.setMap(map);
+
+    var timer = document.getElementById('timer');
+    timeCount = 0;
+
+    // increments time every second and refreshes the map every 10 seconds
+    setInterval(function() {
+      timeCount++;
+      timer.innerHTML = timeCount;
+        if ((timeCount % 10) == 0) {
+         
+          outages = new google.maps.KmlLayer({
+          url: "https://www.londonhydro.com/lhkmlcache/outage_polygons_live.kml"
+        });
+        outages.setMap(map);
+        
+        // resets the count too  
+        timeCount = 0;
+        }
+    }, 1000);
+
+
+    
      // Create the DIV to hold the control and
       // call the AddBox() constructor passing
       // in this DIV.
@@ -116,4 +127,5 @@ function AddBox(controlDiv, map) {
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
+
 </script>
