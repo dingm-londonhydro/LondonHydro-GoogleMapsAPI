@@ -89,10 +89,13 @@ function AddBox(controlDiv, map) {
     var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
     layer.setMap(map);
 
+
+    var testKMLPath = "http://storage.googleapis.com/cloud-sql-dev/kml-test-outages/outage_polygons_2015_04_15.kml";
+
+    var urlSuffixTwo = (new Date).getTime().toString();
+
     // creates outages based on kml file
-    var outages = new google.maps.KmlLayer({
-      url: "https://www.londonhydro.com/lhkmlcache/outage_polygons_live.kml"
-    });
+    var outages = new google.maps.KmlLayer(testKMLPath + '?' +urlSuffixTwo);
     outages.setMap(map);
 
     var timer = document.getElementById('timer');
@@ -104,11 +107,15 @@ function AddBox(controlDiv, map) {
       timer.innerHTML = timeCount;
         if ((timeCount / 10) == 1) {
          // what if there are no outages, would it display empty screen?
-          outages = new google.maps.KmlLayer({
-            'preserveViewport': true,
-          url: "https://www.londonhydro.com/lhkmlcache/outage_polygons_live.kml"
-        });
-        outages.setMap(map);
+          
+    testKMLPath = "http://storage.googleapis.com/cloud-sql-dev/kml-test-outages/outage_polygons_2015_04_15.kml";
+
+    urlSuffixTwo = (new Date).getTime().toString();
+
+    // creates outages based on kml file
+    outages = new google.maps.KmlLayer(testKMLPath + '?' +urlSuffixTwo);
+    outages.set('preserveViewport', true);
+    outages.setMap(map);
         
         // resets the count too  
         timeCount = 0;
