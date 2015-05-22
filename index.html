@@ -73,7 +73,9 @@ function AddBox(controlDiv, map) {
       // made the zoom small style
       zoomControlOptions: {
         style: google.maps.ZoomControlStyle.SMALL
-      }
+      },
+      streetViewControl: false,
+      mapTypeControl: false
     }
     var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
