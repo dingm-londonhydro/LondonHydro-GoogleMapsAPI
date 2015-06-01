@@ -1,0 +1,94 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+	<Document>
+		<name>outagemap_ext</name>
+		<open>1</open>  
+		<Schema name="" id="Schema1">
+			<SimpleField type="xsd:int" name="ID1">
+				162782
+			</SimpleField>
+			<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="EVENT_NUMBER">
+				54
+			</SimpleField>
+			<SimpleField type="xsd:string" name="OFF_DATETIME">
+				10/10/2010
+			</SimpleField>
+			<SimpleField type="xsd:double" name="OUTAGE_AREA">
+				65
+			</SimpleField>
+			<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="RESTORE_DATETIME">
+				10/10/2010
+			</SimpleField>
+			<SimpleField type="xsd:string" name="STATUS">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="STATUS_DATE">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="CONFPRED">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="AFFECTEDWARDS">
+			</SimpleField>
+		</Schema>
+		<Schema name="" id="Schema2">
+			<SimpleField type="xsd:int" name="ID1">
+			</SimpleField>
+			<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="EVENT_NUMBER">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="OFF_DATETIME">
+			</SimpleField>
+			<SimpleField type="xsd:double" name="OUTAGE_AREA">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="RESTORE_DATETIME">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="STATUS">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="STATUS_DATE">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="CONFPRED">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="AFFECTEDWARDS">
+			</SimpleField>
+		</Schema>
+		<Schema name="" id="Schema3">
+			<SimpleField type="xsd:int" name="ID1">
+			</SimpleField>
+			<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="EVENT_NUMBER">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="OFF_DATETIME">
+			</SimpleField>
+			<SimpleField type="xsd:double" name="OUTAGE_AREA">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="RESTORE_DATETIME">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="STATUS">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="STATUS_DATE">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="CONFPRED">
+			</SimpleField>
+			<SimpleField type="xsd:string" name="AFFECTEDWARDS">
+			</SimpleField>
+		</Schema>
+		<Folder>
+			<name>Outages more than 10 minutes old_&gt;500</name>
+		</Folder>
+		<Folder>
+			<name>Outages more than 10 minutes old_50 to 500</name>
+		</Folder>
+		<Folder>
+			<name>Outages more than 10 minutes old_2 to 49</name>
+		</Folder>
+	</Document>
+</kml>
