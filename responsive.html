@@ -1,0 +1,209 @@
+<div id="counterbox">
+<!-- make a table -->
+  <p> Time in minutes and seconds since last refresh: </p>
+ <br>
+  <span id="minutes"></span><span>:<span id="seconds"></span>
+</div>
+
+<div class="container">
+  <div id="map_container"></div>
+  <div id="map_canvas"></div>
+</div>
+ 
+<style>
+
+  #counterbox {
+    padding: 1em;
+    margin-left: 3em;
+    top: 2em;
+    display: flex;
+  }
+  
+.container{
+  width: 100%;
+}
+
+#map_container{
+  position: relative;
+}
+
+#map_canvas{
+  width: 983px;
+    height: 645px;
+    left: 20%;
+    top:10%;
+    overflow: hidden;
+    position: relative;
+}
+
+@media (max-width: 1050px) {
+  
+  .container{
+    width: 100%;
+  }
+
+  #map_container{
+    position: relative;
+  }
+
+  #map_canvas{
+      width: 100%;
+      overflow: hidden;
+      left: 0%;
+      top:0%;
+      position: relative;
+  }
+}
+
+@media (max-width: 500px) {
+
+    .container{
+    width: 100%;
+  }
+
+  #map_container{
+    position: relative;
+  }
+
+  #map_canvas{
+      width: 100%;
+      overflow: hidden;
+      left: 0%;
+      top:0%;
+      position: relative;
+  }
+}
+
+</style>
+ 
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script>
+
+  // London's coordinates
+  var mylocation = {
+    'latitude':  42.9837,
+    'longitude': -81.2497
+  };
+
+  var map;
+
+  /**
+ * The AddBox function adds the image to the map
+ * This constructor takes the control DIV as an argument.
+ * @constructor
+ */
+function AddBox(controlDiv, map) {
+
+  // Set CSS for the control border
+  var controlUI = document.createElement('div');
+  controlUI.style.backgroundColor = '#fff';
+  controlUI.style.border = '2px solid #fff';
+  controlUI.style.borderRadius = '3px';
+  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+  controlUI.style.marginBottom = '2em';
+  controlUI.style.marginRight = '2em';
+  controlDiv.appendChild(controlUI);  
+
+  // Set CSS for the control interior
+  var controlImg = document.createElement('div');
+  controlImg.innerHTML = '<img src="C:/Users/dingm/Desktop/Google Maps/img/londonLegend.png" alt="legend of London">';
+  controlUI.appendChild(controlImg); 
+
+}
+
+
+
+
+
+/*
+* The main function:
+* Starts the map program, draws out the canvas, sets out the options and calls for the KML * files.
+*/
+  function initialize() {
+
+        var mapOptions = {
+      maxZoom: 13,
+      minZoom: 10,
+      zoom: 11,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      zoomControl: true,
+      // made the zoom small style
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL
+      },
+      streetViewControl: false,
+      mapTypeControl: false
+    }
+
+    var myLatlng = new google.maps.LatLng( mylocation.latitude, mylocation.longitude );
+
+     var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+    // This needs to be the Full URL - not a relative URL
+    var kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
+
+    // Add unique number to this url - as with images - to avoid caching issues during development
+    var urlSuffix = (new Date).getTime().toString();
+
+    var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
+    layer.setMap(map);
+
+    // creates outages based on kml file
+    var outages = new google.maps.KmlLayer({
+      url: "https://www.londonhydro.com/lhkmlcache/outage_polygons_live.kml"
+    });
+    outages.setMap(map);
+
+    var minutes = document.getElementById('minutes');
+   var seconds = document.getElementById('seconds');
+   var timeCount = 0;
+   var minuteCount = 0;
+
+
+     // counter function
+     setInterval(function() {
+
+      timeCount++;
+      seconds.innerHTML = timeCount;
+
+        if (minuteCount == 15) {
+              outages = new google.maps.KmlLayer({
+              'preserveViewport': true,
+              url: "http://storage.googleapis.com/cloud-sql-dev/kml-test-outages/outage_polygons_2015_05_15.kml"
+            });
+            outages.setMap(map);
+            timeCount = 0;
+          }
+
+        if (timeCount == 59) { 
+          timeCount = 0;
+          minuteCount++;
+          }
+
+      minutes.innerHTML = minuteCount;
+      
+      }, 1000);
+
+
+    
+     // Create the DIV to hold the control and
+      // call the AddBox() constructor passing
+      // in this DIV.
+    var addLegendDiv = document.createElement('div');
+    var legend = new AddBox(addLegendDiv, map);
+
+    addLegendDiv.index = 1;
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addLegendDiv);
+
+    google.maps.event.addDomListener(window, "resize", function() {
+      map.setCenter(myLatlng); 
+      });
+   
+  }
+
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+   // resizes the google maps
+
+</script>
