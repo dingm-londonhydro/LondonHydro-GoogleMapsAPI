@@ -43,7 +43,7 @@
 <name></name>
 <Placemark>
 <name>Event Outage</name>
-<styleUrl>#Style1</styleUrl>
+<styleUrl>#Style3</styleUrl>
 <ExtendedData>
 <Data name="ID1">
 	<value>122499</value>
