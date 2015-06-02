@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<name>OutagesLive</name>
+<open>1</open>
+<Style id="Style1">
+<LineStyle>
+<color>ff4cf5fc</color>
+<width>0.94488188976378</width>
+</LineStyle>
+<PolyStyle>
+<color>7f4cf5fc</color>
+</PolyStyle>
+</Style>
+<Style id="Style2">
+<LineStyle>
+<color>ff3293f0</color>
+<width>0.94488188976378</width>
+</LineStyle>
+<PolyStyle>
+<color>7f3293f0</color>
+</PolyStyle>
+</Style>
+<Style id="Style3">
+<LineStyle>
+<color>ffc98bb4</color>
+<width>0.94488188976378</width>
+</LineStyle>
+<PolyStyle>
+<color>7fc98bb4</color>
+</PolyStyle>
+</Style>
+<Schema name="Schema1" id="Schema1">
+<SimpleField type="xsd:int" name="ID1">
+</SimpleField>
+<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
+</SimpleField>
+<SimpleField type="xsd:string" name="EVENT_NUMBER">
+</SimpleField>
+<SimpleField type="xsd:string" name="OFF_DATETIME">
+</SimpleField>
+<SimpleField type="xsd:double" name="OUTAGE_AREA">
+</SimpleField>
+<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
+</SimpleField>
+<SimpleField type="xsd:string" name="RESTORE_DATETIME">
+</SimpleField>
+<SimpleField type="xsd:string" name="STATUS">
+</SimpleField>
+<SimpleField type="xsd:string" name="STATUS_DATE">
+</SimpleField>
+<SimpleField type="xsd:string" name="AFFECTEDWARDS">
+</SimpleField>
+<SimpleField type="xsd:string" name="CONFPRED">
+</SimpleField>
+<SimpleField type="xsd:double" name="RUN_ID">
+</SimpleField>
+<SimpleField type="xsd:double" name="OUTAGE_CUSTOMERS">
+</SimpleField>
+<SimpleField type="xsd:string" name="CAUSE_CODE">
+</SimpleField>
+<SimpleField type="xsd:string" name="CREATE_DATETIME">
+</SimpleField>
+</Schema>
+<Schema name="" id="Schema2">
+<SimpleField type="xsd:int" name="ID1">
+</SimpleField>
+<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
+</SimpleField>
+<SimpleField type="xsd:string" name="EVENT_NUMBER">
+</SimpleField>
+<SimpleField type="xsd:string" name="OFF_DATETIME">
+</SimpleField>
+<SimpleField type="xsd:double" name="OUTAGE_AREA">
+</SimpleField>
+<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
+</SimpleField>
+<SimpleField type="xsd:string" name="RESTORE_DATETIME">
+</SimpleField>
+<SimpleField type="xsd:string" name="STATUS">
+</SimpleField>
+<SimpleField type="xsd:string" name="STATUS_DATE">
+</SimpleField>
+<SimpleField type="xsd:string" name="AFFECTEDWARDS">
+</SimpleField>
+<SimpleField type="xsd:string" name="CONFPRED">
+</SimpleField>
+<SimpleField type="xsd:double" name="RUN_ID">
+</SimpleField>
+<SimpleField type="xsd:double" name="OUTAGE_CUSTOMERS">
+</SimpleField>
+<SimpleField type="xsd:string" name="CAUSE_CODE">
+</SimpleField>
+<SimpleField type="xsd:string" name="CREATE_DATETIME">
+</SimpleField>
+</Schema>
+<Schema name="" id="Schema3">
+<SimpleField type="xsd:int" name="ID1">
+</SimpleField>
+<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
+</SimpleField>
+<SimpleField type="xsd:string" name="EVENT_NUMBER">
+</SimpleField>
+<SimpleField type="xsd:string" name="OFF_DATETIME">
+</SimpleField>
+<SimpleField type="xsd:double" name="OUTAGE_AREA">
+</SimpleField>
+<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
+</SimpleField>
+<SimpleField type="xsd:string" name="RESTORE_DATETIME">
+</SimpleField>
+<SimpleField type="xsd:string" name="STATUS">
+</SimpleField>
+<SimpleField type="xsd:string" name="STATUS_DATE">
+</SimpleField>
+<SimpleField type="xsd:string" name="AFFECTEDWARDS">
+</SimpleField>
+<SimpleField type="xsd:string" name="CONFPRED">
+</SimpleField>
+<SimpleField type="xsd:double" name="RUN_ID">
+</SimpleField>
+<SimpleField type="xsd:double" name="OUTAGE_CUSTOMERS">
+</SimpleField>
+<SimpleField type="xsd:string" name="CAUSE_CODE">
+</SimpleField>
+<SimpleField type="xsd:string" name="CREATE_DATETIME">
+</SimpleField>
+</Schema>
+<Schema name="" id="Schema4">
+<SimpleField type="xsd:int" name="ID1">
+</SimpleField>
+<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
+</SimpleField>
+<SimpleField type="xsd:string" name="EVENT_NUMBER">
+</SimpleField>
+<SimpleField type="xsd:string" name="OFF_DATETIME">
+</SimpleField>
+<SimpleField type="xsd:double" name="OUTAGE_AREA">
+</SimpleField>
+<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
+</SimpleField>
+<SimpleField type="xsd:string" name="RESTORE_DATETIME">
+</SimpleField>
+<SimpleField type="xsd:string" name="STATUS">
+</SimpleField>
+<SimpleField type="xsd:string" name="STATUS_DATE">
+</SimpleField>
+<SimpleField type="xsd:string" name="AFFECTEDWARDS">
+</SimpleField>
+<SimpleField type="xsd:string" name="CONFPRED">
+</SimpleField>
+<SimpleField type="xsd:double" name="RUN_ID">
+</SimpleField>
+<SimpleField type="xsd:double" name="OUTAGE_CUSTOMERS">
+</SimpleField>
+<SimpleField type="xsd:string" name="CAUSE_CODE">
+</SimpleField>
+<SimpleField type="xsd:string" name="CREATE_DATETIME">
+</SimpleField>
+</Schema>
+<Folder>
+<name></name>
+<Placemark>
+<name>Event Outage</name>
+<description><![CDATA[Event Number: $[EVENT_NUMBER]<br> Outage Occurrence: $[OFF_DATETIME] <br> Estimated Restoration: $[ESTIMATED_RESTORE]]]></description>
+<styleUrl>#Style1</styleUrl>
+<ExtendedData>
+<Data name="ID1">
+	<value>122499</value>
+</Data>
+<Data name="CUSTOMERS_OUT">
+	<value>3</value>
+</Data>
+<Data name="EVENT_NUMBER">
+	<value>16810</value>
+</Data>
+<Data name="OFF_DATETIME">
+		<value>2015-05-15T09:13:54</value>
+</Data>
+<Data name="OUTAGE_AREA">
+	<value>1</value>
+</Data>
+<Data name="ESTIMATED_RESTORE"><value>2015-05-15T13:30:00</value></Data>
+<Data name="RESTORE_DATETIME"></Data>
+<Data name="STATUS"><value>Restored</value></Data>
+<Data name="STATUS_DATE"><value>2015-05-15T12:44:06</value></Data>
+<Data name="AFFECTEDWARDS"></Data>
+<Data name="CONFPRED"><value>CONFIRM</value></Data>
+<Data name="RUN_ID"><value>21042</value></Data>
+<Data name="OUTAGE_CUSTOMERS"></Data>
+<Data name="CAUSE_CODE"><value>0.004</value></Data>
+<Data name="CREATE_DATETIME"></Data>
+</ExtendedData>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>-81.2338973051004,42.9872488004691,0 -81.2337121944366,42.9872547337441,0 -81.233528492502,42.9872724884156,0 -81.233347597307,42.9873019293669,0 -81.233170885505,42.9873428325462,0 -81.2329997019185,42.987394886671,0 -81.2328353493046,42.9874576955974,0 -81.2326790784431,42.9875307813338,0 -81.2325320786179,42.9876135876782,0 -81.2323954685671,42.9877054844508,0 -81.232270287969,42.9878057722886,0 -81.2321574895302,42.9879136879678,0 -81.2320579317342,42.9880284102112,0 -81.2319723723078,42.9881490659379,0 -81.2319014624527,42.9882747369073,0 -81.2318457418888,42.9884044667067,0 -81.2318056347448,42.9885372680296,0 -81.2317814463279,42.9886721301892,0 -81.2317733607993,42.9888080268102,0 -81.2317814397692,42.9889439236395,0 -81.2318056218266,42.9890787864178,0 -81.2318457230038,42.989211588751,0 -81.2319014381745,42.9893413199215,0 -81.2319723433742,42.9894669925813,0 -81.2320578990243,42.9895876502662,0 -81.2321574540379,42.9897023746761,0 -81.2322702507727,42.9898102926644,0 -81.232395430797,42.9899105828836,0 -81.2325320414216,42.9900024820376,0 -81.2326790429508,42.9900852906911,0 -81.2328353165947,42.990158378594,0 -81.2329996729848,42.9902211894786,0 -81.2331708612269,42.9902732452938,0 -81.2333475784219,42.9903141498441,0 -81.2335284795839,42.9903435918058,0 -81.2337121878779,42.990361347096,0 -81.2338973051004,42.9903672805793,0 -81.2340824223229,42.990361347096,0 -81.2342661306169,42.9903435918058,0 -81.2344470317789,42.9903141498441,0 -81.2346237489739,42.9902732452938,0 -81.234794937216,42.9902211894786,0 -81.2349592936061,42.990158378594,0 -81.23511556725,42.9900852906911,0 -81.2352625687792,42.9900024820376,0 -81.2353991794039,42.9899105828836,0 -81.2355243594281,42.9898102926644,0 -81.2356371561629,42.9897023746761,0 -81.2357367111765,42.9895876502662,0 -81.2358222668266,42.9894669925813,0 -81.2358931720263,42.9893413199215,0 -81.235948887197,42.989211588751,0 -81.2359889883742,42.9890787864178,0 -81.2360131704316,42.9889439236395,0 -81.2360212494015,42.9888080268102,0 -81.2360131638729,42.9886721301892,0 -81.2359889754561,42.9885372680296,0 -81.235948868312,42.9884044667067,0 -81.2358931477481,42.9882747369073,0 -81.235822237893,42.9881490659379,0 -81.2357366784665,42.9880284102112,0 -81.2356371206706,42.9879136879678,0 -81.2355243222318,42.9878057722886,0 -81.2353991416337,42.9877054844508,0 -81.2352625315828,42.9876135876782,0 -81.2351155317577,42.9875307813338,0 -81.2349592608962,42.9874576955974,0 -81.2347949082823,42.987394886671,0 -81.2346237246957,42.9873428325462,0 -81.2344470128939,42.9873019293669,0 -81.2342661176987,42.9872724884156,0 -81.2340824157642,42.9872547337441,0 -81.2338973051004,42.9872488004691,0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+</Folder>
+</Document>
+</kml>
