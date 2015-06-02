@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
@@ -11,6 +12,15 @@
 <PolyStyle>
 <color>7f4cf5fc</color>
 </PolyStyle>
+    <BalloonStyle>
+      <text>
+        <![CDATA[
+          <h2>Event Number: </h2>$[EVENT_NUMBER] <br>
+          <h2>Outage Occurrence: </h2>$[OFF_DATETIME] <br>
+          <h2>Estimated Restoration:</h2> $[ESTIMATED_RESTORE] 
+        ]]>
+      </text>
+    </BalloonStyle>
 </Style>
 <Style id="Style2">
 <LineStyle>
@@ -20,6 +30,15 @@
 <PolyStyle>
 <color>7f3293f0</color>
 </PolyStyle>
+    <BalloonStyle>
+      <text>
+        <![CDATA[
+          <h2>Event Number: </h2>$[EVENT_NUMBER] <br>
+          <h2>Outage Occurrence: </h2>$[OFF_DATETIME] <br>
+          <h2>Estimated Restoration:</h2> $[ESTIMATED_RESTORE] 
+        ]]>
+      </text>
+    </BalloonStyle>
 </Style>
 <Style id="Style3">
 <LineStyle>
@@ -29,159 +48,43 @@
 <PolyStyle>
 <color>7fc98bb4</color>
 </PolyStyle>
+    <BalloonStyle>
+      <text>
+        <![CDATA[
+          <h2>Event Number: </h2>$[EVENT_NUMBER] <br>
+          <h2>Outage Occurrence: </h2>$[OFF_DATETIME] <br>
+          <h2>Estimated Restoration:</h2> $[ESTIMATED_RESTORE] 
+        ]]>
+      </text>
+    </BalloonStyle>
 </Style>
-<Schema name="Schema1" id="Schema1">
-<SimpleField type="xsd:int" name="ID1">
-</SimpleField>
-<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
-</SimpleField>
-<SimpleField type="xsd:string" name="EVENT_NUMBER">
-</SimpleField>
-<SimpleField type="xsd:string" name="OFF_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_AREA">
-</SimpleField>
-<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
-</SimpleField>
-<SimpleField type="xsd:string" name="RESTORE_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS_DATE">
-</SimpleField>
-<SimpleField type="xsd:string" name="AFFECTEDWARDS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CONFPRED">
-</SimpleField>
-<SimpleField type="xsd:double" name="RUN_ID">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_CUSTOMERS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CAUSE_CODE">
-</SimpleField>
-<SimpleField type="xsd:string" name="CREATE_DATETIME">
-</SimpleField>
-</Schema>
-<Schema name="" id="Schema2">
-<SimpleField type="xsd:int" name="ID1">
-</SimpleField>
-<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
-</SimpleField>
-<SimpleField type="xsd:string" name="EVENT_NUMBER">
-</SimpleField>
-<SimpleField type="xsd:string" name="OFF_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_AREA">
-</SimpleField>
-<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
-</SimpleField>
-<SimpleField type="xsd:string" name="RESTORE_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS_DATE">
-</SimpleField>
-<SimpleField type="xsd:string" name="AFFECTEDWARDS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CONFPRED">
-</SimpleField>
-<SimpleField type="xsd:double" name="RUN_ID">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_CUSTOMERS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CAUSE_CODE">
-</SimpleField>
-<SimpleField type="xsd:string" name="CREATE_DATETIME">
-</SimpleField>
-</Schema>
-<Schema name="" id="Schema3">
-<SimpleField type="xsd:int" name="ID1">
-</SimpleField>
-<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
-</SimpleField>
-<SimpleField type="xsd:string" name="EVENT_NUMBER">
-</SimpleField>
-<SimpleField type="xsd:string" name="OFF_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_AREA">
-</SimpleField>
-<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
-</SimpleField>
-<SimpleField type="xsd:string" name="RESTORE_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS_DATE">
-</SimpleField>
-<SimpleField type="xsd:string" name="AFFECTEDWARDS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CONFPRED">
-</SimpleField>
-<SimpleField type="xsd:double" name="RUN_ID">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_CUSTOMERS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CAUSE_CODE">
-</SimpleField>
-<SimpleField type="xsd:string" name="CREATE_DATETIME">
-</SimpleField>
-</Schema>
-<Schema name="" id="Schema4">
-<SimpleField type="xsd:int" name="ID1">
-</SimpleField>
-<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
-</SimpleField>
-<SimpleField type="xsd:string" name="EVENT_NUMBER">
-</SimpleField>
-<SimpleField type="xsd:string" name="OFF_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_AREA">
-</SimpleField>
-<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
-</SimpleField>
-<SimpleField type="xsd:string" name="RESTORE_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS_DATE">
-</SimpleField>
-<SimpleField type="xsd:string" name="AFFECTEDWARDS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CONFPRED">
-</SimpleField>
-<SimpleField type="xsd:double" name="RUN_ID">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_CUSTOMERS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CAUSE_CODE">
-</SimpleField>
-<SimpleField type="xsd:string" name="CREATE_DATETIME">
-</SimpleField>
-</Schema>
 <Folder>
 <name></name>
 <Placemark>
 <name>Event Outage</name>
-<description><![CDATA[Event Number: $[Schema1/EVENT_NUMBER]<br> Outage Occurrence: $[Schema1/OFF_DATETIME] <br> Estimated Restoration: $[Schema1/ESTIMATED_RESTORE]]]></description>
-<styleUrl>#Style1</styleUrl>
+<styleUrl>#Style3</styleUrl>
 <ExtendedData>
-<SchemaData schemaUrl="#Schema1">
-<SimpleData name="ID1">122499</SimpleData>
-<SimpleData name="CUSTOMERS_OUT">3</SimpleData>
-<SimpleData name="EVENT_NUMBER">16810</SimpleData>
-<SimpleData name="OFF_DATETIME">2015-05-15T09:13:54</SimpleData>
-<SimpleData name="OUTAGE_AREA">1</SimpleData>
-<SimpleData name="ESTIMATED_RESTORE">2015-05-15T13:30:00</SimpleData>
-<SimpleData name="RESTORE_DATETIME"></SimpleData>
-<SimpleData name="STATUS">Restored</SimpleData>
-<SimpleData name="STATUS_DATE">2015-05-15T12:44:06</SimpleData>
-<SimpleData name="AFFECTEDWARDS"></SimpleData>
-<SimpleData name="CONFPRED">CONFIRM</SimpleData>
-<SimpleData name="RUN_ID">21042</SimpleData>
-<SimpleData name="OUTAGE_CUSTOMERS"></SimpleData>
-<SimpleData name="CAUSE_CODE">0.004</SimpleData>
-<SimpleData name="CREATE_DATETIME"></SimpleData>
-</SchemaData>
+<Data name="ID1">
+	<value>122499</value>
+</Data>
+<Data name="CUSTOMERS_OUT">
+	<value>3</value>
+</Data>
+<Data name="EVENT_NUMBER">
+	<value>16810</value>
+</Data>
+<Data name="OFF_DATETIME">
+		<value>2015-05-15T09:13:54</value>
+</Data>
+<Data name="OUTAGE_AREA">
+	<value>1</value>
+</Data>
+<Data name="ESTIMATED_RESTORE"><value>2015-05-15T13:30:00</value></Data>
+<Data name="STATUS"><value>Restored</value></Data>
+<Data name="STATUS_DATE"><value>2015-05-15T12:44:06</value></Data>
+<Data name="CONFPRED"><value>CONFIRM</value></Data>
+<Data name="RUN_ID"><value>21042</value></Data>
+<Data name="CAUSE_CODE"><value>0.004</value></Data>
 </ExtendedData>
 <Polygon>
 <outerBoundaryIs>
@@ -193,25 +96,29 @@
 </Placemark>
 <Placemark>
 <name>Event Outage</name>
-<description><![CDATA[Event Number: $[Schema1/EVENT_NUMBER]<br> Outage Occurrence: $[Schema1/OFF_DATETIME] <br> Estimated Restoration: $[Schema1/ESTIMATED_RESTORE]]]></description>
+<styleUrl>#Style3</styleUrl>
 <ExtendedData>
-<SchemaData schemaUrl="#Schema1">
-<SimpleData name="ID1">122501</SimpleData>
-<SimpleData name="CUSTOMERS_OUT">12</SimpleData>
-<SimpleData name="EVENT_NUMBER">16811</SimpleData>
-<SimpleData name="OFF_DATETIME">2015-05-15T15:05:06</SimpleData>
-<SimpleData name="OUTAGE_AREA">1</SimpleData>
-<SimpleData name="ESTIMATED_RESTORE">2015-05-15T20:30:00</SimpleData>
-<SimpleData name="RESTORE_DATETIME"></SimpleData>
-<SimpleData name="STATUS">Restored</SimpleData>
-<SimpleData name="STATUS_DATE">2015-05-15T20:15:37</SimpleData>
-<SimpleData name="AFFECTEDWARDS"></SimpleData>
-<SimpleData name="CONFPRED">CONFIRM</SimpleData>
-<SimpleData name="RUN_ID">21042</SimpleData>
-<SimpleData name="OUTAGE_CUSTOMERS"></SimpleData>
-<SimpleData name="CAUSE_CODE">02.32</SimpleData>
-<SimpleData name="CREATE_DATETIME"></SimpleData>
-</SchemaData>
+<Data name="ID1">
+	<value>17376</value>
+</Data>
+<Data name="CUSTOMERS_OUT">
+	<value>3</value>
+</Data>
+<Data name="EVENT_NUMBER">
+	<value>1623982</value>
+</Data>
+<Data name="OFF_DATETIME">
+		<value>testest</value>
+</Data>
+<Data name="OUTAGE_AREA">
+	<value>1</value>
+</Data>
+<Data name="ESTIMATED_RESTORE"><value>test10</value></Data>
+<Data name="STATUS"><value>Restored</value></Data>
+<Data name="STATUS_DATE"><value>2015-05-15T12:44:06</value></Data>
+<Data name="CONFPRED"><value>CONFIRM</value></Data>
+<Data name="RUN_ID"><value>21042</value></Data>
+<Data name="CAUSE_CODE"><value>0.004</value></Data>
 </ExtendedData>
 <Polygon>
 <outerBoundaryIs>
@@ -223,26 +130,29 @@
 </Placemark>
 <Placemark>
 <name>Event Outage</name>
-<description><![CDATA[Event Number: $[Schema1/EVENT_NUMBER]<br> Outage Occurrence: $[Schema1/OFF_DATETIME] <br> Estimated Restoration: $[Schema1/ESTIMATED_RESTORE]]]></description>
-<styleUrl>#Style1</styleUrl>
+<styleUrl>#Style2</styleUrl>
 <ExtendedData>
-<SchemaData schemaUrl="#Schema1">
-<SimpleData name="ID1">122497</SimpleData>
-<SimpleData name="CUSTOMERS_OUT">17</SimpleData>
-<SimpleData name="EVENT_NUMBER">16808</SimpleData>
-<SimpleData name="OFF_DATETIME">2015-05-15T09:07:30</SimpleData>
-<SimpleData name="OUTAGE_AREA">1</SimpleData>
-<SimpleData name="ESTIMATED_RESTORE">2015-05-15T13:30:00</SimpleData>
-<SimpleData name="RESTORE_DATETIME"></SimpleData>
-<SimpleData name="STATUS">Restored</SimpleData>
-<SimpleData name="STATUS_DATE">2015-05-15T09:20:36</SimpleData>
-<SimpleData name="AFFECTEDWARDS"></SimpleData>
-<SimpleData name="CONFPRED">CONFIRM</SimpleData>
-<SimpleData name="RUN_ID">21042</SimpleData>
-<SimpleData name="OUTAGE_CUSTOMERS"></SimpleData>
-<SimpleData name="CAUSE_CODE">0.004</SimpleData>
-<SimpleData name="CREATE_DATETIME"></SimpleData>
-</SchemaData>
+<Data name="ID1">
+	<value>122499</value>
+</Data>
+<Data name="CUSTOMERS_OUT">
+	<value>3</value>
+</Data>
+<Data name="EVENT_NUMBER">
+	<value>12345</value>
+</Data>
+<Data name="OFF_DATETIME">
+		<value>test2</value>
+</Data>
+<Data name="OUTAGE_AREA">
+	<value>1</value>
+</Data>
+<Data name="ESTIMATED_RESTORE"><value>test3</value></Data>
+<Data name="STATUS"><value>Restored</value></Data>
+<Data name="STATUS_DATE"><value>2015-05-15T12:44:06</value></Data>
+<Data name="CONFPRED"><value>CONFIRM</value></Data>
+<Data name="RUN_ID"><value>21042</value></Data>
+<Data name="CAUSE_CODE"><value>0.004</value></Data>
 </ExtendedData>
 <Polygon>
 <outerBoundaryIs>
@@ -254,31 +164,34 @@
 </Placemark>
 <Placemark>
 <name>Event Outage</name>
-<description><![CDATA[Event Number: $[Schema1/EVENT_NUMBER]<br> Outage Occurrence: $[Schema1/OFF_DATETIME] <br> Estimated Restoration: $[Schema1/ESTIMATED_RESTORE]]]></description>
 <styleUrl>#Style1</styleUrl>
 <ExtendedData>
-<SchemaData schemaUrl="#Schema1">
-<SimpleData name="ID1">122503</SimpleData>
-<SimpleData name="CUSTOMERS_OUT">3</SimpleData>
-<SimpleData name="EVENT_NUMBER">16812</SimpleData>
-<SimpleData name="OFF_DATETIME">2015-05-15T22:10:12</SimpleData>
-<SimpleData name="OUTAGE_AREA">1</SimpleData>
-<SimpleData name="ESTIMATED_RESTORE">2015-05-16T23:30:00</SimpleData>
-<SimpleData name="RESTORE_DATETIME"></SimpleData>
-<SimpleData name="STATUS">Restored</SimpleData>
-<SimpleData name="STATUS_DATE">2015-05-15T23:14:57</SimpleData>
-<SimpleData name="AFFECTEDWARDS"></SimpleData>
-<SimpleData name="CONFPRED">CONFIRM</SimpleData>
-<SimpleData name="RUN_ID">21042</SimpleData>
-<SimpleData name="OUTAGE_CUSTOMERS"></SimpleData>
-<SimpleData name="CAUSE_CODE">03.06</SimpleData>
-<SimpleData name="CREATE_DATETIME"></SimpleData>
-</SchemaData>
+<Data name="ID1">
+	<value>122499</value>
+</Data>
+<Data name="CUSTOMERS_OUT">
+	<value>3</value>
+</Data>
+<Data name="EVENT_NUMBER">
+	<value>13450</value>
+</Data>
+<Data name="OFF_DATETIME">
+		<value>2015-05-15T09:13:54</value>
+</Data>
+<Data name="OUTAGE_AREA">
+	<value>1</value>
+</Data>
+<Data name="ESTIMATED_RESTORE"><value>test5</value></Data>
+<Data name="STATUS"><value>Restored</value></Data>
+<Data name="STATUS_DATE"><value>2015-05-15T12:44:06</value></Data>
+<Data name="CONFPRED"><value>CONFIRM</value></Data>
+<Data name="RUN_ID"><value>21042</value></Data>
+<Data name="CAUSE_CODE"><value>0.004</value></Data>
 </ExtendedData>
 <Polygon>
 <outerBoundaryIs>
 <LinearRing>
-<coordinates>-81.2761950403712,43.0204466239495,0 -81.2760098300076,43.0204525571899,0 -81.2758260291319,43.0204703117576,0 -81.2756450365072,43.020499752537,0 -81.2754682295286,43.0205406554773,0 -81.2752969537425,43.0205927092981,0 -81.2751325126078,43.0206555178576,0 -81.2749761575779,43.0207286031672,0 -81.2748290785773,43.0208114090282,0 -81.2746923949464,43.0209033052643,0 -81.2745671469237,43.0210035925168,0 -81.2744542877288,43.0211115075663,0 -81.2743546763078,43.0212262291405,0 -81.2742690707955,43.0213468841636,0 -81.2741981227445,43.0214725544004,0 -81.2741423721655,43.0216022834437,0 -81.2741022434156,43.0217350839928,0 -81.2740780419668,43.0218699453668,0 -81.2740699520793,43.0220058411964,0 -81.2740780353969,43.0221417372346,0 -81.2741022304755,43.0222765992281,0 -81.2741423532483,43.0224094007886,0 -81.274198098425,43.0225391312047,0 -81.2742690418126,43.0226648031337,0 -81.2743546435423,43.0227854601173,0 -81.2744542521761,43.0229001838606,0 -81.2745671096641,43.0230081012218,0 -81.274692357112,43.0231083908586,0 -81.2748290413177,43.0232002894789,0 -81.2749761220253,43.0232830976516,0 -81.2751324798423,43.0233561851302,0 -81.2752969247597,43.0234189956503,0 -81.2754682052092,43.0234710511634,0 -81.27564501759,43.0235119554764,0 -81.2758260161918,43.0235413972672,0 -81.2760098234377,43.0235591524544,0 -81.2761950403712,43.0235650859033,0 -81.2763802573047,43.0235591524544,0 -81.2765640645506,43.0235413972672,0 -81.2767450631524,43.0235119554764,0 -81.2769218755332,43.0234710511634,0 -81.2770931559827,43.0234189956503,0 -81.2772576009001,43.0233561851302,0 -81.2774139587171,43.0232830976516,0 -81.2775610394247,43.0232002894789,0 -81.2776977236304,43.0231083908586,0 -81.2778229710783,43.0230081012218,0 -81.2779358285663,43.0229001838606,0 -81.2780354372001,43.0227854601173,0 -81.2781210389297,43.0226648031337,0 -81.2781919823174,43.0225391312047,0 -81.2782477274941,43.0224094007886,0 -81.2782878502669,43.0222765992281,0 -81.2783120453455,43.0221417372346,0 -81.2783201286631,43.0220058411964,0 -81.2783120387756,43.0218699453668,0 -81.2782878373268,43.0217350839928,0 -81.2782477085769,43.0216022834437,0 -81.2781919579979,43.0214725544004,0 -81.278121009947,43.0213468841636,0 -81.2780354044346,43.0212262291405,0 -81.2779357930136,43.0211115075663,0 -81.2778229338187,43.0210035925168,0 -81.277697685796,43.0209033052643,0 -81.2775610021651,43.0208114090282,0 -81.2774139231644,43.0207286031672,0 -81.2772575681346,43.0206555178576,0 -81.2770931269999,43.0205927092981,0 -81.2769218512138,43.0205406554773,0 -81.2767450442352,43.020499752537,0 -81.2765640516105,43.0204703117576,0 -81.2763802507348,43.0204525571899,0 -81.2761950403712,43.0204466239495,0 </coordinates>
+<coordinates>-81.2761950403712,43.0204466239495,0 -81.2760098300076,43.0204525571899,0 -81.2758260291319,43.0204703117576,0 -81.2756450365072,43.020499752537,0 -81.2754682295286,43.0205406554773,0 -81.2752969537425,43.0205927092981,0 -81.2751325126078,43.0206555178576,0 -81.2749761575779,43.0207286031672,0 -81.2748290785773,43.0208114090282,0 -81.2746923949464,43.0209033052643,0 -81.2745671469237,43.0210035925168,0 -81.2744542877288,43.0211115075663,0 -81.2743546763078,43.0212262291405,0 -81.2742690707955,43.0213468841636,0 -81.2741981227445,43.0214725544004,0 -81.2741423721655,43.0216022834437,0 -81.2741022434156,43.0217350839928,0 -81.2740780419668,43.0218699453668,0 -81.2740699520793,43.0220058411964,0 -81.2740780353969,43.0221417372346,0 -81.2741022304755,43.0222765992281,0 -81.2741423532483,43.0224094007886,0 -81.274198098425,43.0225391312047,0 -81.2742690418126,43.0226648031337,0 -81.2743546435423,43.0227854601173,0 -81.2744542521761,43.0229001838606,0 -81.2745671096641,43.0230081012218,0 -81.274692357112,43.0231083908586,0 -81.2748290413177,43.0232002894789,0 -81.2749761220253,43.0232830976516,0 -81.2751324798423,43.0233561851302,0 -81.2752969247597,43.0234189956503,0 -81.2754682052092,43.0234710511634,0 -81.27564501759,43.0235119554764,0 -81.2758260161918,43.0235413972672,0 -81.2760098234377,43.0235591524544,0 -81.2761950403712,43.0235650859033,0 -81.2763802573047,43.0235591524544,0 -81.2765640645506,43.0235413972672,0 -81.2767450631524,43.0235119554764,0 -81.2769218755332,43.0234710511634,0 -81.2770931559827,43.0234189956503,0 -81.2772576009001,43.0233561851302,0 -81.2774139587171,43.0232830976516,0 -81.2775610394247,43.0232002894789,0 -81.2776977236304,43.0231083908586,0 -81.2778229710783,43.0230081012218,0 -81.2779358285663,43.0229001838606,0 -81.2780354372001,43.0227854601173,0 -81.2781210389297,43.0226648031337,0 -81.2781919823174,43.0225391312047,0 -81.2782477274941,43.0224094007886,0 -81.2782878502669,43.0222765992281,0 -81.2783120453455,43.0221417372346,0 -81.2783201286631,43.0220058411964,0 -81.2783120387756,43.0218699453668,0 -81.2782878373268,43.0217350839928,0 -81.2782477085769,43.0216022834437,0 -81.2781919579979,43.0214725544004,0 -81.278121009947,43.0213468841636,0 -81.2780354044346,43.0212262291405,0 -81.2779357930136,43.0211115075663,0 -81.2778229338187,43.0210035925168,0 -81.277697685796,43.0209033052643,0 -81.2775610021651,43.0208114090282,0 -81.2774139231644,43.0207286031672,0 -81.2772575681346,43.0206555178576,0 -81.2770931269999,43.0205927092981,0 -81.2769218512138,43.0205406554773,0 -81.2767450442352,43.020499752537,0 -81.2765640516105,43.0204703117576,0 -81.2763802507348,43.0204525571899,0 -81.2761950403712,43.0204466239495,0</coordinates>
 </LinearRing>
 </outerBoundaryIs>
 </Polygon>
