@@ -29,140 +29,20 @@
 <PolyStyle>
 <color>7fc98bb4</color>
 </PolyStyle>
+    <BalloonStyle>
+      <text>
+        <![CDATA[
+          Event Number: $[EVENT_NUMBER]
+          Outage Occurrence: $[OFF_DATETIME]
+          Estimated Restoration: $[ESTIMATED_RESTORE]
+        ]]>
+      </text>
+    </BalloonStyle>
 </Style>
-<Schema name="Schema1" id="Schema1">
-<SimpleField type="xsd:int" name="ID1">
-</SimpleField>
-<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
-</SimpleField>
-<SimpleField type="xsd:string" name="EVENT_NUMBER">
-</SimpleField>
-<SimpleField type="xsd:string" name="OFF_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_AREA">
-</SimpleField>
-<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
-</SimpleField>
-<SimpleField type="xsd:string" name="RESTORE_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS_DATE">
-</SimpleField>
-<SimpleField type="xsd:string" name="AFFECTEDWARDS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CONFPRED">
-</SimpleField>
-<SimpleField type="xsd:double" name="RUN_ID">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_CUSTOMERS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CAUSE_CODE">
-</SimpleField>
-<SimpleField type="xsd:string" name="CREATE_DATETIME">
-</SimpleField>
-</Schema>
-<Schema name="" id="Schema2">
-<SimpleField type="xsd:int" name="ID1">
-</SimpleField>
-<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
-</SimpleField>
-<SimpleField type="xsd:string" name="EVENT_NUMBER">
-</SimpleField>
-<SimpleField type="xsd:string" name="OFF_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_AREA">
-</SimpleField>
-<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
-</SimpleField>
-<SimpleField type="xsd:string" name="RESTORE_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS_DATE">
-</SimpleField>
-<SimpleField type="xsd:string" name="AFFECTEDWARDS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CONFPRED">
-</SimpleField>
-<SimpleField type="xsd:double" name="RUN_ID">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_CUSTOMERS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CAUSE_CODE">
-</SimpleField>
-<SimpleField type="xsd:string" name="CREATE_DATETIME">
-</SimpleField>
-</Schema>
-<Schema name="" id="Schema3">
-<SimpleField type="xsd:int" name="ID1">
-</SimpleField>
-<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
-</SimpleField>
-<SimpleField type="xsd:string" name="EVENT_NUMBER">
-</SimpleField>
-<SimpleField type="xsd:string" name="OFF_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_AREA">
-</SimpleField>
-<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
-</SimpleField>
-<SimpleField type="xsd:string" name="RESTORE_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS_DATE">
-</SimpleField>
-<SimpleField type="xsd:string" name="AFFECTEDWARDS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CONFPRED">
-</SimpleField>
-<SimpleField type="xsd:double" name="RUN_ID">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_CUSTOMERS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CAUSE_CODE">
-</SimpleField>
-<SimpleField type="xsd:string" name="CREATE_DATETIME">
-</SimpleField>
-</Schema>
-<Schema name="" id="Schema4">
-<SimpleField type="xsd:int" name="ID1">
-</SimpleField>
-<SimpleField type="xsd:double" name="CUSTOMERS_OUT">
-</SimpleField>
-<SimpleField type="xsd:string" name="EVENT_NUMBER">
-</SimpleField>
-<SimpleField type="xsd:string" name="OFF_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_AREA">
-</SimpleField>
-<SimpleField type="xsd:string" name="ESTIMATED_RESTORE">
-</SimpleField>
-<SimpleField type="xsd:string" name="RESTORE_DATETIME">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS">
-</SimpleField>
-<SimpleField type="xsd:string" name="STATUS_DATE">
-</SimpleField>
-<SimpleField type="xsd:string" name="AFFECTEDWARDS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CONFPRED">
-</SimpleField>
-<SimpleField type="xsd:double" name="RUN_ID">
-</SimpleField>
-<SimpleField type="xsd:double" name="OUTAGE_CUSTOMERS">
-</SimpleField>
-<SimpleField type="xsd:string" name="CAUSE_CODE">
-</SimpleField>
-<SimpleField type="xsd:string" name="CREATE_DATETIME">
-</SimpleField>
-</Schema>
 <Folder>
 <name></name>
 <Placemark>
 <name>Event Outage</name>
-<description><![CDATA[Event Number: $[EVENT_NUMBER]<br> Outage Occurrence: $[OFF_DATETIME] <br> Estimated Restoration: $[ESTIMATED_RESTORE]]]></description>
 <styleUrl>#Style1</styleUrl>
 <ExtendedData>
 <Data name="ID1">
@@ -181,15 +61,11 @@
 	<value>1</value>
 </Data>
 <Data name="ESTIMATED_RESTORE"><value>2015-05-15T13:30:00</value></Data>
-<Data name="RESTORE_DATETIME"></Data>
 <Data name="STATUS"><value>Restored</value></Data>
 <Data name="STATUS_DATE"><value>2015-05-15T12:44:06</value></Data>
-<Data name="AFFECTEDWARDS"></Data>
 <Data name="CONFPRED"><value>CONFIRM</value></Data>
 <Data name="RUN_ID"><value>21042</value></Data>
-<Data name="OUTAGE_CUSTOMERS"></Data>
 <Data name="CAUSE_CODE"><value>0.004</value></Data>
-<Data name="CREATE_DATETIME"></Data>
 </ExtendedData>
 <Polygon>
 <outerBoundaryIs>
