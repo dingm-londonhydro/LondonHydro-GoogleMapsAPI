@@ -15,9 +15,13 @@
 		if (data) {
 			document.write("success");
 			document.write(data);
+			
+			var JSONstring = JSON.stringify(data);
 		} else {
 			document.write("failed");
 		}
+		
+		document.write(JSONstring);
 		
 		
 		/*var xmlDoc = xmlRequest.responseXML;
