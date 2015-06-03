@@ -33,8 +33,8 @@
 		  document.write(outage_time);
 		  document.write("</td><td>")
 		  var restoration_time_value = x[i].getElementsByTagName("SimpleData")[5].childNodes[0].nodeValue;
-		 var restoration_time_moment = moment(outage_time_value);
-		  var restoration_time = outage_time_moment.format(date_format);
+		 var restoration_time_moment = moment(restoration_time_value);
+		  var restoration_time = restoration_time_moment.format(date_format);
 		  document.write("</td></tr>");
 		  
 		  count++;
