@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+	<head>
+
+		<script>
+		var xmlRequest = new XMLHttpRequest();
+		xmlRequest.open("GET","http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml", false);
+		xmlRequest.send();
+
+		var xmlDoc = xmlRequest.response;
+
+		if (xmlDoc) {
+			document.write(xmlDoc);
+		} else {
+			document.write("test failed");
+		}
+		
+		/*var simpleField = xmlDoc.getElementsByTagName("Schema")[0].childNodes[0].nodeValue;
+
+		if (simpleField == null) {
+			var test= document.getElementById('test');
+			test.innerHTML = ("test failed");
+		} else {
+			var test= document.getElementById('test');
+			test.innerHTML = ("test succeeded");
+
+		}*/
+
+		/*var parser = new DOMParser();
+		var xml = parser.parseFromString(xmlDoc, "application/xml"); */
+
+		</script> 
+
+	</head>
+	<body>
+
+		<div id="test">
+		</div>
+
+	</body>
+</html>
