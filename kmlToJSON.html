@@ -20,6 +20,7 @@
 
 		document.write("<table><tr><th>Event Number</th><th>Outage Occurrence</th><th>Estimated Restoration</th></tr>");
 		var x=xmlDoc.getElementsByTagName("Placemark");
+		var count;
 		for (i=0;i<x.length;i++)
 		  { 
 			var date_format = "MMM DD, hh:mm a";
@@ -31,11 +32,16 @@
 		  var outage_time = outage_time_moment.format(date_format);
 		  document.write(outage_time);
 		  document.write("</td><td>")
-		  var 
-		 document.write(x[i].getElementsByTagName("SimpleData")[5].childNodes[0].nodeValue);
+		  var restoration_time_value = x[i].getElementsByTagName("SimpleData")[5].childNodes[0].nodeValue;
+		 var restoration_time_moment = moment(outage_time_value);
+		  var restoration_time = outage_time_moment.format(date_format);
 		  document.write("</td></tr>");
+		  
+		  count++;
 		  }
 		document.write("</table>");
+		
+		
 		
 		/*
 		var url = "http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml";
