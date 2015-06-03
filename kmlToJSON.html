@@ -7,7 +7,7 @@
 		xmlRequest.open("GET","http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml", false);
 		xmlRequest.send();
 
-		var xmlDoc = xmlRequest.response;
+		var xmlDoc = xmlRequest.responseXML;
 
 		if (xmlDoc) {
 			document.write(xmlDoc);
