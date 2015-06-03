@@ -28,18 +28,17 @@
 }
 
 #map_canvas{
-  width: 465px;
-    height: 220px;
+  width: 983px;
+    height: 645px;
     left: 20%;
     top:10%;
     overflow: hidden;
     position: relative;
 }
 
-
-@media (max-width: 500px) {
-
-    .container{
+@media (max-width: 1000px) {
+  
+  .container{
     width: 100%;
   }
 
@@ -48,7 +47,6 @@
   }
 
   #map_canvas{
-      width: 100%;
       overflow: hidden;
       left: 0%;
       top:0%;
@@ -130,7 +128,7 @@ function AddBox(controlDiv, map) {
 
     // creates outages based on kml file
     var outages = new google.maps.KmlLayer({
-      url: "https://www.londonhydro.com/lhkmlcache/outage_polygons_live.kml"
+      url: "http://mding5692.github.io/LondonHydro-GoogleMapsAPI/data.kml"
     });
     outages.setMap(map);
 
@@ -153,7 +151,6 @@ function AddBox(controlDiv, map) {
           });
           outages.setMap(map);
           timeCount = 0;
-          minuteCount = 0;
         }
 
     if (timeCount == 59) { 
@@ -176,11 +173,6 @@ function AddBox(controlDiv, map) {
     addLegendDiv.index = 1;
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addLegendDiv);
 
-       google.maps.event.addDomListener(window, "resize", function() {
-      map.setCenter(myLatlng); 
-      });
-  
- 
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);

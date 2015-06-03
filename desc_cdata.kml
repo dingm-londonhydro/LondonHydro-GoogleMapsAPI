@@ -161,6 +161,8 @@
 <Folder>
 <name></name>
 <Placemark>
+<name>Event Outage</name>
+<description><![CDATA[Event Number: 16810 <br> Outage Occurrence: May 5th 2015 <br> Estimated Restoration: test4]]></description>
 <styleUrl>#Style1</styleUrl>
 <ExtendedData>
 <SchemaData schemaUrl="#Schema1">
@@ -190,6 +192,8 @@
 </Polygon>
 </Placemark>
 <Placemark>
+<name>Event Outage</name>
+<description><![CDATA[Event Number: 16810 <br> Outage Occurrence: May 5th 2015 <br> Estimated Restoration: test3]]></description>
 <styleUrl>#Style1</styleUrl>
 <ExtendedData>
 <SchemaData schemaUrl="#Schema1">
@@ -219,7 +223,8 @@
 </Polygon>
 </Placemark>
 <Placemark>
-
+<name>Event Outage</name>
+<description><![CDATA[Event Number: 16810 <br> Outage Occurrence: May 5th 2015 <br> Estimated Restoration: test 1]]></description>
 <styleUrl>#Style1</styleUrl>
 <ExtendedData>
 <SchemaData schemaUrl="#Schema1">
@@ -249,6 +254,8 @@
 </Polygon>
 </Placemark>
 <Placemark>
+<name>Event Outage</name>
+<description><![CDATA[Event Number: 16810 <br> Outage Occurrence: May 5th 2015 <br> Estimated Restoration: test 2]]></description>
 <styleUrl>#Style1</styleUrl>
 <ExtendedData>
 <SchemaData schemaUrl="#Schema1">
