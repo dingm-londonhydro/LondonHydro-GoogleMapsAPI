@@ -1,19 +1,32 @@
 <!doctype html>
 <html>
 	<head>
-
+		<script src="parseXML.js"></script>
 		<script>
-		var xmlRequest = new XMLHttpRequest();
+		/*var xmlRequest = new XMLHttpRequest();
 		xmlRequest.open("GET","http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml", false);
-		xmlRequest.send();
-
-		var xmlDoc = xmlRequest.responseXML;
+		xmlRequest.send();*/
+		
+		var url = "http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml";
+		var xml = new JKL.ParseXML(url);
+		
+		var data = xml.parse();
+		
+		if (data) {
+			document.write("success");
+			document.write(data);
+		} else {
+			document.write("failed");
+		}
+		
+		
+		/*var xmlDoc = xmlRequest.responseXML;
 
 		if (xmlDoc) {
 			document.write(xmlDoc);
 		} else {
 			document.write("test failed");
-		}
+		} */
 		
 		/*var simpleField = xmlDoc.getElementsByTagName("Schema")[0].childNodes[0].nodeValue;
 
