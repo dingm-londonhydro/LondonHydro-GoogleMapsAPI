@@ -35,6 +35,7 @@
 		  var restoration_time_value = x[i].getElementsByTagName("SimpleData")[5].childNodes[0].nodeValue;
 		 var restoration_time_moment = moment(restoration_time_value);
 		  var restoration_time = restoration_time_moment.format(date_format);
+		  document.write(restoration_time);
 		  document.write("</td></tr>");
 		  
 		  count++;
