@@ -1,12 +1,37 @@
 <!doctype html>
 <html>
 	<head>
+		<style>
+		table, th, td {
+		    border: 1px solid black;
+		    border-collapse:collapse;
+		}
+		th, td {
+		    padding: 5px;
+		}
+		</style>
+		
 		<script src="parseXML.js"></script>
 		<script>
-		/*var xmlRequest = new XMLHttpRequest();
+		var xmlRequest = new XMLHttpRequest();
 		xmlRequest.open("GET","http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml", false);
-		xmlRequest.send();*/
+		xmlRequest.send();
 		
+		xmlDoc=xmlhttp.responseXML; 
+
+		document.write("<table><tr><th>Artist</th><th>Title</th></tr>");
+		var x=xmlDoc.getElementsByTagName("Placemark");
+		for (i=0;i<x.length;i++)
+		  { 
+		  document.write("<tr><td>");
+		  document.write(x[i].getElementsByTagName("ExtendedData")[0].childNodes[0].nodeValue);
+		  document.write("</td><td>");
+		  document.write(x[i].getElementsByTagName("styleUrl")[0].childNodes[0].nodeValue);
+		  document.write("</td></tr>");
+		  }
+		document.write("</table>");
+		
+		/*
 		var url = "http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml";
 		var xml = new JKL.ParseXML(url);
 		
@@ -21,7 +46,7 @@
 		document.write(JSONstring);
 		
 		
-		/*var xmlDoc = xmlRequest.responseXML;
+		var xmlDoc = xmlRequest.responseXML;
 
 		if (xmlDoc) {
 			document.write(xmlDoc);
