@@ -17,7 +17,7 @@
 		xmlRequest.open("GET","http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml", false);
 		xmlRequest.send();
 		
-		xmlDoc=xmlhttp.responseXML; 
+		xmlDoc=xmlRequest.responseXML; 
 
 		document.write("<table><tr><th>Artist</th><th>Title</th></tr>");
 		var x=xmlDoc.getElementsByTagName("Placemark");
