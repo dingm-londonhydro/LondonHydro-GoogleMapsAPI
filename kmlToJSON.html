@@ -18,7 +18,7 @@
 		
 		xmlDoc=xmlRequest.responseXML; 
 
-		document.write("<table><tr><th>Artist</th><th>Title</th></tr>");
+		document.write("<table><tr><th>Event Number</th><th>Outage Occurrence</th><th>Estimated Restoration</th></tr>");
 		var x=xmlDoc.getElementsByTagName("Placemark");
 		for (i=0;i<x.length;i++)
 		  { 
