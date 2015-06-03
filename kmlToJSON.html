@@ -22,11 +22,16 @@
 		var x=xmlDoc.getElementsByTagName("Placemark");
 		for (i=0;i<x.length;i++)
 		  { 
+			var date_format = "MMM DD, hh:mm a";
 		  document.write("<tr><td>");
 		  document.write(x[i].getElementsByTagName("SimpleData")[2].childNodes[0].nodeValue);
 		  document.write("</td><td>");
-		  document.write(x[i].getElementsByTagName("SimpleData")[3].childNodes[0].nodeValue);
+		  var outage_time_value = x[i].getElementsByTagName("SimpleData")[3].childNodes[0].nodeValue;
+		  var outage_time_moment = moment(outage_time_value);
+		  var outage_time = outage_time_moment.format(date_format);
+		  document.write(outage_time);
 		  document.write("</td><td>")
+		  var 
 		 document.write(x[i].getElementsByTagName("SimpleData")[5].childNodes[0].nodeValue);
 		  document.write("</td></tr>");
 		  }
