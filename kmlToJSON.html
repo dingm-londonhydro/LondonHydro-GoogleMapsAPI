@@ -24,9 +24,11 @@
 		for (i=0;i<x.length;i++)
 		  { 
 		  document.write("<tr><td>");
-		  document.write(x[i].getElementsByTagName("SimpleData")[0].childNodes[0].nodeValue);
+		  document.write(x[i].getElementsByTagName("SimpleData")[2].childNodes[0].nodeValue);
 		  document.write("</td><td>");
-		  document.write(x[i].getElementsByTagName("styleUrl")[0].childNodes[0].nodeValue);
+		  document.write(x[i].getElementsByTagName("SimpleData")[3].childNodes[0].nodeValue);
+		  document.write("</td><td>")
+		 document.write(x[i].getElementsByTagName("SimpleData")[5].childNodes[0].nodeValue);
 		  document.write("</td></tr>");
 		  }
 		document.write("</table>");
