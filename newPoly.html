@@ -1,0 +1,221 @@
+<div id="map_canvas"></div>   
+
+<style>
+#map_canvas{
+  width: 983px;
+    height: 645px;
+    left: 20%;
+    top:10%;
+    overflow: hidden;
+    position: relative;
+}
+</style>
+
+<!--http://zedfox.us/index.php/2014/04/draw-moving-vehicles-polygons-real-time-on-google-maps/-->
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="../js/moment.js"></script>
+<script>
+
+    /*  window.onload = function() {
+
+        var url = "http://mding5692.github.io/LondonHydro-GoogleMapsAPI/outages.kml"
+
+        document.write(splitKML(url));
+      }
+  */
+
+
+    /**
+   * The AddBox function adds the image to the map
+   * This constructor takes the control DIV as an argument.
+   * @constructor
+   */
+  function AddBox(controlDiv, map) {
+
+    // Set CSS for the control border
+    var controlUI = document.createElement('div');
+    controlUI.style.backgroundColor = '#fff';
+    controlUI.style.border = '2px solid #fff';
+    controlUI.style.borderRadius = '3px';
+    controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+    controlUI.style.marginBottom = '10px';
+    controlUI.style.marginRight = '15px';
+    controlDiv.appendChild(controlUI);  
+
+    // Set CSS for the control interior
+    var controlImg = document.createElement('div');
+    controlImg.innerHTML = '<img src="C:/Users/dingm/Desktop/Google Maps v1/img/londonLegend.png" alt="legend of London">';
+    controlUI.appendChild(controlImg); 
+
+  }
+
+
+
+    function initialize() {
+
+        // London's coordinates
+  var mylocation = {
+    'latitude':  42.9837,
+    'longitude': -81.2497
+  };
+
+
+    var myLatlng = new google.maps.LatLng( mylocation.latitude, mylocation.longitude );
+
+    var mapOptions = {
+      maxZoom: 13,
+      minZoom: 10,
+      zoom: 11,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      zoomControl: true,
+      // made the zoom small style
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL
+      },
+      scaleControl: true,
+      scaleControlOptions: {
+        position: google.maps.ControlPosition.LEFT_BOTTOM
+      }, 
+      streetViewControl: false,
+      mapTypeControl: false
+    }
+    var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+
+    // This needs to be the Full URL - not a relative URL
+    var kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
+
+    // Add unique number to this url - as with images - to avoid caching issues during development
+    var urlSuffix = (new Date).getTime().toString();
+
+    var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
+    layer.setMap(map);
+    // Create the DIV to hold the control and
+      // call the AddBox() constructor passing
+      // in this DIV.
+    var addLegendDiv = document.createElement('div');
+    var legend = new AddBox(addLegendDiv, map);
+
+    addLegendDiv.index = 1;
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addLegendDiv);
+
+    google.maps.event.addDomListener(window, "resize", function() {
+      map.setCenter(myLatlng); 
+    });
+  
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+  var placemarkArray = [];
+
+    var xmlRequest = new XMLHttpRequest();
+    xmlRequest.open("GET","http://mding5692.github.io/LondonHydro-GoogleMapsAPI/outages.kml", false);
+    xmlRequest.send();
+    
+    xmlDoc=xmlRequest.responseXML; 
+
+    var x=xmlDoc.getElementsByTagName("Placemark");
+
+
+    for (i=0;i<x.length;i++)
+      { 
+      var date_format = "MMM DD, hh:mm a";
+       
+      // gets the event number
+      var event_number_value = x[i].getElementsByTagName("SimpleData")[2].childNodes[0].nodeValue;
+
+      // gets outage start time
+      var outage_time_value = x[i].getElementsByTagName("SimpleData")[3].childNodes[0].nodeValue;
+      var outage_time_moment = moment(outage_time_value);
+
+      // converts to humanly readable form
+      var outage_time = outage_time_moment.format(date_format);
+
+      // copy down the coordinates
+
+      // gets estimated restoration time
+      var restoration_time_value = x[i].getElementsByTagName("SimpleData")[5].childNodes[0].nodeValue;
+
+        if (restoration_time_value === "2001-01-01T00:00:00") {
+          var restoration_time = "Not yet determined";
+        } else {
+          var restoration_time_moment = moment(restoration_time_value);
+        
+        // converts to humanly readable form
+          var restoration_time = restoration_time_moment.format(date_format);
+          }
+        // gets the coordinates of the polygon
+        var coords = x[i].getElementsByTagName("coordinates")[0].childNodes[0].nodeValue;
+
+        var coordinate = coords.concat();
+
+        // gets the colour of the polygon
+        var colour = x[i].getElementsByTagName("styleUrl")[0].childNodes[0].nodeValue;
+        var fillColour, borderColour;
+        
+        // determines the colour
+        if (colour === "#Style1") {
+          fillColour = '7f4cf5fc';
+          borderColour = 'ff4cf5fc';
+        } else if (colour === "#Style2") {
+          fillColour = '7f3293f0';
+          borderColour = 'ff3293f0';
+        } else {
+          fillColour = '7fc98bb4';
+          borderColour = 'ffc98bb4';
+        }
+
+        // adds to JSON object in JSON array
+        var obj = {
+          event_number: event_number_value,
+          off_time: outage_time,
+          restore_time: restoration_time,
+          fill: fillColour,
+          border: borderColour,
+          coordinates: coordinate
+        }; 
+        
+        var j = 0; 
+        while (j < obj.coordinates.length) {
+
+         // document.write(obj.coordinates[j])
+        // create a sentence string to hold it
+        //var string = "";
+        //string += obj.coordinates[j];  
+
+         // document.write(string);
+
+        // so it prints out each letter, if it hits the comma
+        // then stop, count increments
+        // put it into the latlng
+        // after two counts, start over
+        j++;
+      } 
+
+        var infowindow = new google.maps.InfoWindow({
+
+        });
+
+        // create a polygon based on the coordinates, fill and border
+        var polyOptions = { 
+          paths:,
+          strokeColor: borderColour,
+          fillColor: fillColour,
+
+        }
+
+
+
+        // create an infowindow
+
+        // make contentof infowindow include the event number, off time and restore time
+
+        var jsonObj = JSON.stringify(obj);
+          
+        placemarkArray.push()
+        //document.write(placemarkArray[i])
+        }
+		    </script>     
