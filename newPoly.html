@@ -32,7 +32,7 @@ var placemarkArray = [];
         }
         // gets the coordinates of the polygon
         var coords = x[i].getElementsByTagName("coordinates")[0].childNodes[0].nodeValue;
-        var coordinate = coords.split(",");
+        var coordinate = coords.split(",0 ");
         // gets the colour of the polygon
         var colour = x[i].getElementsByTagName("styleUrl")[0].childNodes[0].nodeValue;
         var fillColour, borderColour;
@@ -65,65 +65,46 @@ var placemarkArray = [];
 
         //http://stackoverflow.com/questions/6593473/lat-long-array-as-markers-on-google-maps-api-v3
 
-        // create two new arrays to hold first and second coordinate
+        var firstCoords = [];
+        var secondCoords = [];
 
-        // then while not reached end, keep making new LatLngs
+        document.write(coordinate);
 
-        // create a coordinate Array
-        var polygonCoords = [];
-        // creates a new LatLng
-        var j = 0;
-        var z = j + 1;
-    while (z < coordinate.length) {
-        if ((j%2) === 0) {
-        var co1 = parseFloat(coordinate[z]);
-        document.write(coordinate[j]);
-        var co2 = parseFloat(coordinate[j]);
-        document.write(co2);
-        var newLatLng = new google.maps.LatLng(co1,co2);
-        
-        polygonCoords.push(newLatLng);
-    } else {
-        var co2 = parseFloat(coordinate[z]);
-        var co1 = parseFloat(coordinate[j]);
-        var newLatLng = new google.maps.LatLng(co1,co2);
-        polygonCoords.push(newLatLng);
-    }
-        z++;
-        j++;
+        /*// use coordinate array
+        for (var count = 0; count < coordinate.length; count++) {
+
+            // move to next 
+            var current = coordinate[count];
+
+            // then convert to float
+            var converted = parseFloat(current);
+
+            // move to first array if count is odd
+            if ((count%2) != 0 ) {
+                firstCoords.push(converted);
+            } else {
+                secondCoords.push(converted);
+            }
+
         }
 
-        //document.write(polygonCoords);
-    
-        var mylocation = {
-        'latitude':  42.9837,
-        'longitude': -81.2497
-        };
-        
-        var myLatlng = new google.maps.LatLng( mylocation.latitude, mylocation.longitude );
-            var mapOptions = {
-            maxZoom: 13,
-            minZoom: 10,
-            zoom: 11,
-            center: myLatlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            zoomControl: true,
-            // made the zoom small style
-            zoomControlOptions: {
-                style: google.maps.ZoomControlStyle.SMALL
-            },
-            scaleControl: true,
-            scaleControlOptions: {
-                position: google.maps.ControlPosition.LEFT_BOTTOM
-            },
-            streetViewControl: false,
-            mapTypeControl: false
-            }
-            var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-            var newPoly = new google.maps.Polygon({
-            paths: polygonCoords,
-            strokeColor: borderColour,
-            fillColor: fillColour
-            })
-            newPoly.setMap(map);
+        document.write(firstCoords);
+        document.write(secondCoords);
+        // convert to float
+
+        // then move to separate arrays
+
+
+
+   /*     var coord2DArray = Array();
+
+        var j = 0; 
+        while (j<coordinate.length) {
+            // add in an array of two coordinate
+            // add array of first coord and then second coord
+            coord2DArray[j] = ;
+        }
+
+*/
+
 </script>
