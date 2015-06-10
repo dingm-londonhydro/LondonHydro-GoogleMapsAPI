@@ -1,0 +1,129 @@
+<div id="map_canvas"></div>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="../js/moment.js"></script>
+<script>
+var placemarkArray = [];
+    var xmlRequest = new XMLHttpRequest();
+    xmlRequest.open("GET","http://mding5692.github.io/LondonHydro-GoogleMapsAPI/outages.kml", false);
+    xmlRequest.send();
+    
+    xmlDoc=xmlRequest.responseXML;
+    var x=xmlDoc.getElementsByTagName("Placemark");
+    var date_format = "MMM DD, hh:mm a";
+    
+    var i = 0;
+    // gets the event number
+    var event_number_value = x[i].getElementsByTagName("SimpleData")[2].childNodes[0].nodeValue;
+    // gets outage start time
+    var outage_time_value = x[i].getElementsByTagName("SimpleData")[3].childNodes[0].nodeValue;
+    var outage_time_moment = moment(outage_time_value);
+    // converts to humanly readable form
+    var outage_time = outage_time_moment.format(date_format);
+    // copy down the coordinates
+    // gets estimated restoration time
+    var restoration_time_value = x[i].getElementsByTagName("SimpleData")[5].childNodes[0].nodeValue;
+        if (restoration_time_value === "2001-01-01T00:00:00") {
+        var restoration_time = "Not yet determined";
+        } else {
+        var restoration_time_moment = moment(restoration_time_value);
+        
+        // converts to humanly readable form
+        var restoration_time = restoration_time_moment.format(date_format);
+        }
+        // gets the coordinates of the polygon
+        var coords = x[i].getElementsByTagName("coordinates")[0].childNodes[0].nodeValue;
+        var coordinate = coords.split(",");
+        // what this does is still leave some behind where there isnt ,0
+        // first do something to remove the commas and then the random 0s
+       // document.write(coordinate);
+        var coordJoined = coordinate.concat().toString();
+        //document.write(coordJoined);
+        var coordAgain = coordJoined.split(",");
+        document.write(coordAgain);
+        // gets the colour of the polygon
+        var colour = x[i].getElementsByTagName("styleUrl")[0].childNodes[0].nodeValue;
+        var fillColour, borderColour;
+        
+        // determines the colour
+        if (colour === "#Style1") {
+        fillColour = '7f4cf5fc';
+        borderColour = 'ff4cf5fc';
+        } else if (colour === "#Style2") {
+        fillColour = '7f3293f0';
+        borderColour = 'ff3293f0';
+        } else {
+        fillColour = '7fc98bb4';
+        borderColour = 'ffc98bb4';
+        }
+        
+        // adds to JSON object in JSON array
+        var obj = {
+        event_number: event_number_value,
+        off_time: outage_time,
+        restore_time: restoration_time,
+        fill: fillColour,
+        border: borderColour,
+        coordinates: coords
+        };
+
+        // remember to put the last element zero to add to the array later on or just store as random variable
+
+       // create a coordinate Array
+        var polygonCoords = [];
+        // creates a new LatLng
+    /*    var j = 0;
+        var z = j + 1;
+    while (z < coordinate.length) {
+        if ((z%2) === 0) {
+        var co1 = parseFloat(coordinate[z]);
+        var co2 = parseFloat(coordinate[j]);
+        var newLatLng = new google.maps.LatLng(co1,co2);
+        
+        polygonCoords.push(newLatLng);
+    } else {
+        var co1 = parseFloat(coordinate[j]);
+        var co2 = parseFloat(coordinate[z]);
+        var newLatLng = new google.maps.LatLng(co1,co2);
+        polygonCoords.push(newLatLng);
+    }
+        z++;
+        j++;
+        }
+        // removes last element as its useless
+        polygonCoords.pop();
+        document.write(polygonCoords);
+*/
+  
+    /*
+        var mylocation = {
+        'latitude':  42.9837,
+        'longitude': -81.2497
+        };
+        
+        var myLatlng = new google.maps.LatLng( mylocation.latitude, mylocation.longitude );
+            var mapOptions = {
+            maxZoom: 13,
+            minZoom: 10,
+            zoom: 11,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            zoomControl: true,
+            // made the zoom small style
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL
+            },
+            scaleControl: true,
+            scaleControlOptions: {
+                position: google.maps.ControlPosition.LEFT_BOTTOM
+            },
+            streetViewControl: false,
+            mapTypeControl: false
+            }
+            var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+            var newPoly = new google.maps.Polygon({
+            paths: polygonCoords,
+            strokeColor: borderColour,
+            fillColor: fillColour
+            })
+            newPoly.setMap(map); */
+</script>
