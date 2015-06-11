@@ -1,0 +1,259 @@
+<div id="time">
+</div>
+<div id="map_canvas"></div>
+<style>
+.container{
+width: 100%;
+}
+#map_container{
+position: relative;
+}
+#map_canvas{
+width: 983px;
+    height: 645px;
+    top:10%;
+    overflow: hidden;
+    position: relative;
+}
+@media (max-width: 1200px) {
+.container{
+    width: 100%;
+}
+#map_container{
+    position: relative;
+}
+#map_canvas{
+    width: 100%;
+    overflow: hidden;
+    left: 0%;
+    top:0%;
+    position: relative;
+}
+}
+@media (max-width: 500px) {
+    .container{
+    width: 100%;
+}
+#map_container{
+    position: relative;
+}
+#map_canvas{
+    width: 100%;
+    overflow: hidden;
+    left: 0%;
+    top:0%;
+    position: relative;
+}
+}
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="../js/moment.js"></script>
+<script>
+function AddBox(controlDiv, map) {
+// Set CSS for the control border
+var controlUI = document.createElement('div');
+controlUI.style.backgroundColor = '#fff';
+controlUI.style.border = '2px solid #fff';
+controlUI.style.borderRadius = '3px';
+controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+controlUI.style.marginBottom = '10px';
+controlUI.style.marginRight = '15px';
+controlDiv.appendChild(controlUI);
+// Set CSS for the control interior
+var controlImg = document.createElement('div');
+controlImg.innerHTML = '<img src="https://cloud.githubusercontent.com/assets/9067177/7816552/0e167444-039d-11e5-86ce-0a9e9fceb9cb.png">';
+controlUI.appendChild(controlImg);
+}
+function initialize() 
+{
+    // London's coordinates
+    var mylocation = 
+    {
+    'latitude':  42.9837,
+    'longitude': -81.2497
+    };
+    var map;
+    var myLatlng = new google.maps.LatLng( mylocation.latitude, mylocation.longitude );
+    var mapOptions = {
+        maxZoom: 13,
+        minZoom: 10,
+        zoom: 11,
+        center: myLatlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        zoomControl: true,
+        // made the zoom small style
+        zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL
+        },
+        streetViewControl: false,
+        mapTypeControl: false
+    };
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    var addLegendDiv = document.createElement('div');
+    var legend = new AddBox(addLegendDiv, map);
+    addLegendDiv.index = 1;
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addLegendDiv);
+    // This needs to be the Full URL - not a relative URL
+    var kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
+    // Add unique number to this url - as with images - to avoid caching issues during development
+    var urlSuffix = (new Date).getTime().toString();
+    var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
+    layer.setMap(map);
+   
+   /** Calls using xmlhttprequest to grab the kml file
+   */
+    var xmlRequest = new XMLHttpRequest();
+    xmlRequest.open("GET","http://mding5692.github.io/LondonHydro-GoogleMapsAPI/outages.kml", false);
+    xmlRequest.send();
+    xmlDoc=xmlRequest.responseXML;
+    var x=xmlDoc.getElementsByTagName("Placemark");
+    // travels through each Placemark tag in the kml files
+    var outage_time, restoration_time, event_number_value,fillColour, borderColour;
+    var objArray = [];
+
+    for (var i = 0; i < x.length; i++) {
+    // uses momentjs api to create human readable dates
+        var date_format = "MMM DD, hh:mm a";
+        // gets the event number
+        event_number_value = x[i].getElementsByTagName("SimpleData")[2].childNodes[0].nodeValue;
+        // gets outage start time
+        var outage_time_value = x[i].getElementsByTagName("SimpleData")[3].childNodes[0].nodeValue;
+        var outage_time_moment = moment(outage_time_value);
+        outage_time = outage_time_moment.format(date_format);
+        // gets estimated restoration time
+        var restoration_time_value = x[i].getElementsByTagName("SimpleData")[5].childNodes[0].nodeValue;
+        // checks to see if we have a restoration time or not
+        if (restoration_time_value === "2001-01-01T00:00:00") 
+        {
+            restoration_time = "Not yet determined";
+        } else 
+        {
+            var restoration_time_moment = moment(restoration_time_value);
+            restoration_time = restoration_time_moment.format(date_format);
+        }
+        // gets the coordinates of the polygon
+        var coords = x[i].getElementsByTagName("coordinates")[0].childNodes[0].nodeValue;
+        var coordinate = coords.split(",0 ");
+        var coordJoined = coordinate.join();
+        var coordAgain = coordJoined.split(",");
+        // gets the colour of the polygon
+        var colour = x[i].getElementsByTagName("styleUrl")[0].childNodes[0].nodeValue;
+        // determines the colour out of yellow, orange and red
+        if (colour === "#Style1") 
+        {
+            fillColour = '#f1c40f';
+            borderColour = '#f1c40f';
+        } else if (colour === "#Style2") 
+        {
+            fillColour = '#e67e22';
+            borderColour = '#e67e22';
+        } else 
+        {   
+            fillColour = '#c0392b';
+            borderColour = '#c0392b';
+        }
+        
+        // creates objects and adds it to array to be later used as data
+        var obj = 
+        {
+          eventID: event_number_value,
+          offTime: outage_time,
+          restoreTime: restoration_time,
+          fill: fillColour,
+          borderCol: borderColour
+        };
+        objArray.push(obj);
+
+
+        // create a LatLng array out of the coordinate string
+        var polygonCoords = new Array();
+        var j = 0;
+        var z = j + 1;
+        while (z < coordinate.length) 
+        {
+          if ((j%2) === 0) 
+          {
+            var co1 = parseFloat(coordAgain[z]);
+            var co2 = parseFloat(coordAgain[j]);
+            var newLatLng = new google.maps.LatLng(co1,co2);
+            polygonCoords.push(newLatLng);
+            } else 
+            {
+                var co1 = parseFloat(coordAgain[j]);
+                var co2 = parseFloat(coordAgain[z]);
+                var newLatLng = new google.maps.LatLng(co1,co2);
+                polygonCoords.push(newLatLng);
+            }
+        z++;
+        j++;
+        }
+
+        var 
+
+        /** Adds the polygon to a polygon array
+        * and maps it onto the map
+        */
+              var newPoly = new google.maps.Polygon(
+              {
+                paths: polygonCoords,
+                strokeColor: objArray[i].borderCol,
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: objArray[i].fill,
+                fillOpacity: 0.35
+                })
+              newPoly.setMap(map);
+              newPoly.set("eventNum",objArray[i].eventID);
+              newPoly.set("offTime", objArray[i].offTime);
+              newPoly.set("resTime", objArray[i].restoreTime);
+               function attachInfoWindow(event) 
+                {
+                  var infowindowPoly = new google.maps.InfoWindow();
+                  var eventNo = newPoly.get("eventNum");
+                  var outTime = newPoly.get("offTime");
+                  var resTime = newPoly.get("resTime");
+                  var contentString = "Event Number: " + eventNo + "<br> Outage Time: " + outTime + "<br> Estimated Restoration Time: " + resTime;
+                  infowindowPoly.setContent(contentString);
+                  infowindowPoly.setPosition(event.latLng);
+                  infowindowPoly.open(map);
+                  google.maps.event.addListener(map, 'click', function() 
+                    {
+                      infowindowPoly.close();
+
+                    });
+                }
+              google.maps.event.addListener(newPoly, 'click', attachInfoWindow); 
+            
+    }
+            // resizes the map when changing screen size
+          google.maps.event.addDomListener(window, "resize", function() 
+            {
+                        map.setCenter(myLatlng);
+            });
+
+        // grabs the current time into string form
+        var currTime = new Date().toUTCString();
+        var timeLeft = 15;
+        setInterval(function() 
+        {
+          if (timeLeft === 0) 
+          {
+            google.maps.event.trigger(map, "resize", function() 
+            {
+                                map.setCenter(myLatlng);
+            });
+            timeLeft = 15;
+            // get canadian time
+            currTime = new Date().toUTCString();
+          }
+          timeLeft--;
+          document.getElementById("time").innerHTML = "<b> Outage map last updated on: </b>" + currTime + ". " + "There is " + timeLeft + " minutes until next refresh."; 
+        }, 1000);
+    // we refresh every 15 min
+    // writes it out on the DOM 
+
+}
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
