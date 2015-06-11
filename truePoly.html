@@ -1,6 +1,6 @@
 <div id="map_canvas"></div>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script src="../js/moment.js"></script>
+<script src="./moment.js"></script>
 <script>
 var placemarkArray = [];
     var xmlRequest = new XMLHttpRequest();
@@ -32,14 +32,11 @@ var placemarkArray = [];
         }
         // gets the coordinates of the polygon
         var coords = x[i].getElementsByTagName("coordinates")[0].childNodes[0].nodeValue;
-        var coordinate = coords.split(",");
-        // what this does is still leave some behind where there isnt ,0
-        // first do something to remove the commas and then the random 0s
-       // document.write(coordinate);
-        var coordJoined = coordinate.concat().toString();
+        var coordinate = coords.split(",0 ");
+
+        var coordJoined = coordinate.join();
         //document.write(coordJoined);
         var coordAgain = coordJoined.split(",");
-        document.write(coordAgain);
         // gets the colour of the polygon
         var colour = x[i].getElementsByTagName("styleUrl")[0].childNodes[0].nodeValue;
         var fillColour, borderColour;
@@ -52,37 +49,45 @@ var placemarkArray = [];
         fillColour = '7f3293f0';
         borderColour = 'ff3293f0';
         } else {
+            
         fillColour = '7fc98bb4';
         borderColour = 'ffc98bb4';
         }
         
-        // adds to JSON object in JSON array
-        var obj = {
-        event_number: event_number_value,
-        off_time: outage_time,
-        restore_time: restoration_time,
-        fill: fillColour,
-        border: borderColour,
-        coordinates: coords
+        // creates object array
+        var objArray = {
+
+            objects: []
         };
 
-        // remember to put the last element zero to add to the array later on or just store as random variable
+        // adds object to array
+        var obj = {
+        eventID: event_number_value,
+        offTime: outage_time,
+        restoreTime: restoration_time,
+        fill: fillColour,
+        border: borderColour
+        };
 
+        objArray.objects += obj;
+        document.write(objArray.objects[0].eventID);
+        // remember to put the last element zero to add to the array later on or just store as random variable
+       
        // create a coordinate Array
         var polygonCoords = [];
         // creates a new LatLng
-    /*    var j = 0;
+       var j = 0;
         var z = j + 1;
     while (z < coordinate.length) {
         if ((z%2) === 0) {
-        var co1 = parseFloat(coordinate[z]);
-        var co2 = parseFloat(coordinate[j]);
+        var co1 = parseFloat(coordAgain[z]);
+        var co2 = parseFloat(coordAgain[j]);
         var newLatLng = new google.maps.LatLng(co1,co2);
         
         polygonCoords.push(newLatLng);
     } else {
-        var co1 = parseFloat(coordinate[j]);
-        var co2 = parseFloat(coordinate[z]);
+        var co1 = parseFloat(coordAgain[j]);
+        var co2 = parseFloat(coordAgain[z]);
         var newLatLng = new google.maps.LatLng(co1,co2);
         polygonCoords.push(newLatLng);
     }
@@ -91,10 +96,16 @@ var placemarkArray = [];
         }
         // removes last element as its useless
         polygonCoords.pop();
-        document.write(polygonCoords);
-*/
-  
-    /*
+        //document.write(polygonCoords);
+
+        // store the polygonCoords in an array
+        // create the map before all this and then load
+        // a new polygon created from coordinates and then
+        // attach infowindow with their information 
+        // which means that their info should be stored in the json object
+
+        function initialize() {
+    
         var mylocation = {
         'latitude':  42.9837,
         'longitude': -81.2497
@@ -123,7 +134,16 @@ var placemarkArray = [];
             var newPoly = new google.maps.Polygon({
             paths: polygonCoords,
             strokeColor: borderColour,
-            fillColor: fillColour
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: fillColour,
+            fillOpacity: 0.35
             })
-            newPoly.setMap(map); */
+            newPoly.setMap(map); 
+            // add the polygon to a polygon array
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+
 </script>
