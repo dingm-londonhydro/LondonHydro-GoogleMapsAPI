@@ -166,7 +166,7 @@
 <SchemaData schemaUrl="#Schema1">
 <SimpleData name="ID1">122499</SimpleData>
 <SimpleData name="CUSTOMERS_OUT">3</SimpleData>
-<SimpleData name="EVENT_NUMBER">16810</SimpleData>
+<SimpleData name="EVENT_NUMBER">1Test2</SimpleData>
 <SimpleData name="OFF_DATETIME">2015-05-15T09:13:54</SimpleData>
 <SimpleData name="OUTAGE_AREA">1</SimpleData>
 <SimpleData name="ESTIMATED_RESTORE">2015-05-15T13:30:00</SimpleData>
@@ -195,7 +195,7 @@
 <SchemaData schemaUrl="#Schema1">
 <SimpleData name="ID1">122501</SimpleData>
 <SimpleData name="CUSTOMERS_OUT">12</SimpleData>
-<SimpleData name="EVENT_NUMBER">16811</SimpleData>
+<SimpleData name="EVENT_NUMBER">Test1</SimpleData>
 <SimpleData name="OFF_DATETIME">2015-05-15T15:05:06</SimpleData>
 <SimpleData name="OUTAGE_AREA">1</SimpleData>
 <SimpleData name="ESTIMATED_RESTORE">2015-05-15T20:30:00</SimpleData>
@@ -225,7 +225,7 @@
 <SchemaData schemaUrl="#Schema1">
 <SimpleData name="ID1">122497</SimpleData>
 <SimpleData name="CUSTOMERS_OUT">17</SimpleData>
-<SimpleData name="EVENT_NUMBER">16808</SimpleData>
+<SimpleData name="EVENT_NUMBER">etests</SimpleData>
 <SimpleData name="OFF_DATETIME">2015-05-15T09:07:30</SimpleData>
 <SimpleData name="OUTAGE_AREA">1</SimpleData>
 <SimpleData name="ESTIMATED_RESTORE">2015-05-15T13:30:00</SimpleData>
@@ -254,7 +254,7 @@
 <SchemaData schemaUrl="#Schema1">
 <SimpleData name="ID1">122503</SimpleData>
 <SimpleData name="CUSTOMERS_OUT">3</SimpleData>
-<SimpleData name="EVENT_NUMBER">16812</SimpleData>
+<SimpleData name="EVENT_NUMBER">thisisatest</SimpleData>
 <SimpleData name="OFF_DATETIME">2015-05-15T22:10:12</SimpleData>
 <SimpleData name="OUTAGE_AREA">1</SimpleData>
 <SimpleData name="ESTIMATED_RESTORE">2015-05-16T23:30:00</SimpleData>
