@@ -83,47 +83,13 @@ function attachInfoWindow(newPoly, objArray, i) {
     });
   };
 }
-
-function initialize() 
-{
-    // London's coordinates
-    var mylocation = 
-    {
-    'latitude':  42.9837,
-    'longitude': -81.2497
-    };
-
-    var myLatlng = new google.maps.LatLng( mylocation.latitude, mylocation.longitude );
-    var mapOptions = {
-        maxZoom: 13,
-        minZoom: 10,
-        zoom: 11,
-        center: myLatlng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        zoomControl: true,
-        // made the zoom small style
-        zoomControlOptions: {
-            style: google.maps.ZoomControlStyle.SMALL
-        },
-        streetViewControl: false,
-        mapTypeControl: false
-    };
-    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-    var addLegendDiv = document.createElement('div');
-    var legend = new AddBox(addLegendDiv, map);
-    addLegendDiv.index = 1;
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addLegendDiv);
-    // This needs to be the Full URL - not a relative URL
-    var kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
-    // Add unique number to this url - as with images - to avoid caching issues during development
-    var urlSuffix = (new Date).getTime().toString();
-    var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
-    layer.setMap(map);
-   
-   /** Calls using xmlhttprequest to grab the kml file
+    
+     /** Calls using xmlhttprequest to grab the kml file
+     * and later prints it out as one or more polygons
    */
+function getKML(kmlUrl) { 
     var xmlRequest = new XMLHttpRequest();
-    xmlRequest.open("GET","http://mding5692.github.io/LondonHydro-GoogleMapsAPI/outages.kml", false);
+    xmlRequest.open("GET",kmlUrl, false);
     xmlRequest.send();
     xmlDoc=xmlRequest.responseXML;
     var x=xmlDoc.getElementsByTagName("Placemark");
@@ -229,6 +195,46 @@ function initialize()
               google.maps.event.addListener(newPoly, 'click', attachInfoWindow(newPoly, objArray, i)); 
             
         }
+    }
+
+
+function initialize() 
+{
+    // London's coordinates
+    var mylocation = 
+    {
+    'latitude':  42.9837,
+    'longitude': -81.2497
+    };
+
+    var myLatlng = new google.maps.LatLng( mylocation.latitude, mylocation.longitude );
+    var mapOptions = {
+        maxZoom: 13,
+        minZoom: 10,
+        zoom: 11,
+        center: myLatlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        zoomControl: true,
+        // made the zoom small style
+        zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL
+        },
+        streetViewControl: false,
+        mapTypeControl: false
+    };
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    var addLegendDiv = document.createElement('div');
+    var legend = new AddBox(addLegendDiv, map);
+    addLegendDiv.index = 1;
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addLegendDiv);
+    // This needs to be the Full URL - not a relative URL
+    var kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
+    // Add unique number to this url - as with images - to avoid caching issues during development
+    var urlSuffix = (new Date).getTime().toString();
+    var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
+    layer.setMap(map);
+    getKML("http://mding5692.github.io/LondonHydro-GoogleMapsAPI/outages.kml");
+   
             // resizes the map when changing screen size
           google.maps.event.addDomListener(window, "resize", function() 
             {
@@ -242,10 +248,7 @@ function initialize()
         {
           if (timeLeft === 0) 
           {
-            google.maps.event.trigger(map, "resize", function() 
-            {
-                                map.setCenter(myLatlng);
-            });
+            getKML("http://mding5692.github.io/LondonHydro-GoogleMapsAPI/outages.kml");
             timeLeft = 15;
             // get canadian time
             currTime = new Date();
