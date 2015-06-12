@@ -49,8 +49,14 @@ width: 983px;
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script src="../js/moment.js"></script>
 <script>
+// could try making an array of arrays, and everytime u fill up one, u move to the next
 var map;
-
+var polyArray = [];
+var infoWindowArray = [];
+/**
+*  Allows you to create your own controls/UI for the map
+*  and then sets it to the map
+*/
 function AddBox(controlDiv, map) {
 // Set CSS for the control border
 var controlUI = document.createElement('div');
@@ -68,6 +74,10 @@ controlUI.appendChild(controlImg);
 
 }
 
+/**
+*   Attaches infowindows by setting stuff from an array of objects as
+*   attributes for each polygon and then drawing it on the map
+*/ 
 function attachInfoWindow(newPoly, objArray, i) {
   return function(event) {
     var eventNo = newPoly.get("eventNum");
@@ -78,52 +88,27 @@ function attachInfoWindow(newPoly, objArray, i) {
     infowindowPoly.setContent(contentString);
     infowindowPoly.setPosition(event.latLng);
     infowindowPoly.open(map);
+    infoWindowArray.push(infowindowPoly);
+    // closes previous infowindow if there is another
+    if (infoWindowArray.length > 1) {
+        infoWindowArray[0].close();
+        infoWindowArray[0] = infoWindowArray[1];
+        infoWindowArray.pop();
+    }
+
+    polyArray.push(newPoly);
     google.maps.event.addListener(map, 'click', function() {
       infowindowPoly.close();
     });
   };
 }
-
-function initialize() 
-{
-    // London's coordinates
-    var mylocation = 
-    {
-    'latitude':  42.9837,
-    'longitude': -81.2497
-    };
-
-    var myLatlng = new google.maps.LatLng( mylocation.latitude, mylocation.longitude );
-    var mapOptions = {
-        maxZoom: 13,
-        minZoom: 10,
-        zoom: 11,
-        center: myLatlng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        zoomControl: true,
-        // made the zoom small style
-        zoomControlOptions: {
-            style: google.maps.ZoomControlStyle.SMALL
-        },
-        streetViewControl: false,
-        mapTypeControl: false
-    };
-    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-    var addLegendDiv = document.createElement('div');
-    var legend = new AddBox(addLegendDiv, map);
-    addLegendDiv.index = 1;
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addLegendDiv);
-    // This needs to be the Full URL - not a relative URL
-    var kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
-    // Add unique number to this url - as with images - to avoid caching issues during development
-    var urlSuffix = (new Date).getTime().toString();
-    var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
-    layer.setMap(map);
-   
-   /** Calls using xmlhttprequest to grab the kml file
+    
+     /** Calls using xmlhttprequest to grab the kml file
+     * and later prints it out as one or more polygons
    */
+function getKML(kmlUrl) { 
     var xmlRequest = new XMLHttpRequest();
-    xmlRequest.open("GET","http://mding5692.github.io/LondonHydro-GoogleMapsAPI/outages.kml", false);
+    xmlRequest.open("GET",kmlUrl, false);
     xmlRequest.send();
     xmlDoc=xmlRequest.responseXML;
     var x=xmlDoc.getElementsByTagName("Placemark");
@@ -229,6 +214,75 @@ function initialize()
               google.maps.event.addListener(newPoly, 'click', attachInfoWindow(newPoly, objArray, i)); 
             
         }
+    }
+
+/**
+*   Refreshes the map by taking in the array of polygons created, c * losing them and any infowindows and 
+*   also grabbing the new polygons from a Url using getKML
+*/
+function refreshMap(polygonArray, newUrl) {
+
+    for (var j = 0; j < polygonArray.length; j++) {
+        polygonArray[j].setMap(null);
+        if (infoWindowArray[j]) {
+            infoWindowArray[j].close();
+            infoWindowArray.pop();
+        }
+    }
+    getKML(newUrl);
+}
+
+/**
+*   Returns the current date and time
+*/
+function getDate() {
+        var date = new Date();
+        var month = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][date.getMonth()];
+        var day = date.getDay();
+        var currDate = day + ' ' + month + ' ' + date.getFullYear();    
+        return currDate;
+}
+
+/**
+*   Initializes everything and creates the map, also calls the above functions
+*/
+function initialize() 
+{
+    // London's coordinates
+    var mylocation = 
+    {
+    'latitude':  42.9837,
+    'longitude': -81.2497
+    };
+
+    var myLatlng = new google.maps.LatLng( mylocation.latitude, mylocation.longitude );
+    var mapOptions = {
+        maxZoom: 13,
+        minZoom: 10,
+        zoom: 11,
+        center: myLatlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        zoomControl: true,
+        // made the zoom small style
+        zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL
+        },
+        streetViewControl: false,
+        mapTypeControl: false
+    };
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    var addLegendDiv = document.createElement('div');
+    var legend = new AddBox(addLegendDiv, map);
+    addLegendDiv.index = 1;
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addLegendDiv);
+    // This needs to be the Full URL - not a relative URL
+    var kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
+    // Add unique number to this url - as with images - to avoid caching issues during development
+    var urlSuffix = (new Date).getTime().toString();
+    var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
+    layer.setMap(map);
+    getKML("http://mding5692.github.io/LondonHydro-GoogleMapsAPI/outages.kml");
+   
             // resizes the map when changing screen size
           google.maps.event.addDomListener(window, "resize", function() 
             {
@@ -236,25 +290,23 @@ function initialize()
             });
 
         // grabs the current time into string form
-        var currTime = new Date();
+        // we refresh every 15 min
+        // writes it out on the DOM
+        var currDate = getDate();
+        var currTime = new Date().toLocaleTimeString()
         var timeLeft = 15;
         setInterval(function() 
         {
           if (timeLeft === 0) 
           {
-            google.maps.event.trigger(map, "resize", function() 
-            {
-                                map.setCenter(myLatlng);
-            });
+            refreshMap(polyArray, "http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml");
             timeLeft = 15;
-            // get canadian time
-            currTime = new Date();
+            currDate = getDate();
+            currTime = new Date().toLocaleTimeString();
           }
           timeLeft--;
-          document.getElementById("time").innerHTML = "<b> Outage map last updated on: </b>" + currTime + ". " + "There is " + timeLeft + " minutes until next refresh."; 
-        }, 1000);
-    // we refresh every 15 min
-    // writes it out on the DOM 
+          document.getElementById("time").innerHTML = "<b> Outage map last updated on: </b>" + currDate + " at " + currTime + " (the next update is in " + timeLeft + " minute(s))"; 
+        }, 1000); 
 
 }
 
