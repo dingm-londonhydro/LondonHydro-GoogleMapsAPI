@@ -47,10 +47,12 @@ width: 983px;
 }
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script src="./js/moment.js"></script>
+<script src="../js/moment.js"></script>
 <script>
+// could try making an array of arrays, and everytime u fill up one, u move to the next
 var map;
 var polyArray = [];
+var infoWindowArray = [];
 /**
 *  Allows you to create your own controls/UI for the map
 *  and then sets it to the map
@@ -86,6 +88,14 @@ function attachInfoWindow(newPoly, objArray, i) {
     infowindowPoly.setContent(contentString);
     infowindowPoly.setPosition(event.latLng);
     infowindowPoly.open(map);
+    infoWindowArray.push(infowindowPoly);
+    // closes previous infowindow if there is another
+    if (infoWindowArray.length > 1) {
+        infoWindowArray[0].close();
+        infoWindowArray[0] = infoWindowArray[1];
+        infoWindowArray.pop();
+    }
+
     polyArray.push(newPoly);
     google.maps.event.addListener(map, 'click', function() {
       infowindowPoly.close();
@@ -218,6 +228,10 @@ function refreshMap(polygonArray, newUrl) {
     getKML(newUrl);
 }
 
+/**
+*   Removes the infowindow when another is pressed
+*/
+
 
 /**
 *   Initializes everything and creates the map, also calls the above functions
@@ -273,6 +287,7 @@ function initialize()
           if (timeLeft === 0) 
           {
             refreshMap(polyArray, "http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml");
+            //refreshMap(polyArray,)
             timeLeft = 15;
             // get canadian time
             currTime = new Date();
