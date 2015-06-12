@@ -50,7 +50,11 @@ width: 983px;
 <script src="../js/moment.js"></script>
 <script>
 var map;
-
+var polyArray = [];
+/**
+*  Allows you to create your own controls/UI for the map
+*  and then sets it to the map
+*/
 function AddBox(controlDiv, map) {
 // Set CSS for the control border
 var controlUI = document.createElement('div');
@@ -68,6 +72,10 @@ controlUI.appendChild(controlImg);
 
 }
 
+/**
+*   Attaches infowindows by setting stuff from an array of objects as
+*   attributes for each polygon and then drawing it on the map
+*/ 
 function attachInfoWindow(newPoly, objArray, i) {
   return function(event) {
     var eventNo = newPoly.get("eventNum");
@@ -78,6 +86,7 @@ function attachInfoWindow(newPoly, objArray, i) {
     infowindowPoly.setContent(contentString);
     infowindowPoly.setPosition(event.latLng);
     infowindowPoly.open(map);
+    polyArray.push(newPoly);
     google.maps.event.addListener(map, 'click', function() {
       infowindowPoly.close();
     });
@@ -197,7 +206,22 @@ function getKML(kmlUrl) {
         }
     }
 
+/**
+*   Refreshes the map by taking in the array of polygons created and 
+*   also grabbing the new polygons from a Url using getKML
+*/
+function refreshMap(polygonArray, newUrl) {
 
+    for (var j = 0; j < polygonArray.length; j++) {
+        polygonArray[j].setMap(null);
+    }
+    getKML(newUrl);
+}
+
+
+/**
+*   Initializes everything and creates the map, also calls the above functions
+*/
 function initialize() 
 {
     // London's coordinates
@@ -248,7 +272,7 @@ function initialize()
         {
           if (timeLeft === 0) 
           {
-            getKML("http://mding5692.github.io/LondonHydro-GoogleMapsAPI/outages.kml");
+            refreshMap(polyArray, "http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml");
             timeLeft = 15;
             // get canadian time
             currTime = new Date();
