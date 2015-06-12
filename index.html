@@ -226,7 +226,7 @@ function refreshMap(polygonArray, newUrl) {
         polygonArray[j].setMap(null);
         if (infoWindowArray[j]) {
             infoWindowArray[j].close();
-            infoWindowArray[j].pop();
+            infoWindowArray.pop();
         }
     }
     getKML(newUrl);
