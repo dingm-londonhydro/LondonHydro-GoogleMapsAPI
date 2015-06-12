@@ -217,7 +217,7 @@ function getKML(kmlUrl) {
     }
 
 /**
-*   Refreshes the map by taking in the array of polygons created and 
+*   Refreshes the map by taking in the array of polygons created, c * losing them and any infowindows and 
 *   also grabbing the new polygons from a Url using getKML
 */
 function refreshMap(polygonArray, newUrl) {
@@ -233,9 +233,15 @@ function refreshMap(polygonArray, newUrl) {
 }
 
 /**
-*   Removes the infowindow when another is pressed
+*   Returns the current date and time
 */
-
+function getDate() {
+        var date = new Date();
+        var month = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][date.getMonth()];
+        var day = date.getDay();
+        var currDate = day + ' ' + month + ' ' + date.getFullYear();    
+        return currDate;
+}
 
 /**
 *   Initializes everything and creates the map, also calls the above functions
@@ -284,23 +290,23 @@ function initialize()
             });
 
         // grabs the current time into string form
-        var currTime = new Date();
+        // we refresh every 15 min
+        // writes it out on the DOM
+        var currDate = getDate();
+        var currTime = new Date().toLocaleTimeString()
         var timeLeft = 15;
         setInterval(function() 
         {
           if (timeLeft === 0) 
           {
             refreshMap(polyArray, "http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml");
-            //refreshMap(polyArray,)
             timeLeft = 15;
-            // get canadian time
-            currTime = new Date();
+            currDate = getDate();
+            currTime = new Date().toLocaleTimeString();
           }
           timeLeft--;
-          document.getElementById("time").innerHTML = "<b> Outage map last updated on: </b>" + currTime + ". " + "There is " + timeLeft + " minutes until next refresh."; 
-        }, 1000);
-    // we refresh every 15 min
-    // writes it out on the DOM 
+          document.getElementById("time").innerHTML = "<b> Outage map last updated on: </b>" + currDate + " at " + currTime + " (the next update is in " + timeLeft + " minute(s))"; 
+        }, 1000); 
 
 }
 
