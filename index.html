@@ -15,7 +15,7 @@ width: 983px;
     overflow: hidden;
     position: relative;
 }
-@media (max-width: 1200px) {
+@media (max-width: 982px) {
 .container{
     width: 100%;
 }
@@ -33,6 +33,9 @@ width: 983px;
 @media (max-width: 500px) {
     .container{
     width: 100%;
+}
+.infowindow {
+    font-size: 2em;
 }
 #map_container{
     position: relative;
@@ -83,8 +86,10 @@ function attachInfoWindow(newPoly, objArray, i) {
     var eventNo = newPoly.get("eventNum");
     var outTime = newPoly.get("offTime");
     var resTime = objArray[i].restoreTime;
-    var contentString = "Event Number: " + eventNo + "<br> Outage Time: " + outTime + "<br> Estimated Restoration Time: " + resTime;
-    var infowindowPoly = new google.maps.InfoWindow();
+    var contentString = "<div class='infowindow'> Event Number: " + eventNo + "<br> Outage Time: " + outTime + "<br> Estimated Restoration Time: " + resTime + "</div>";
+    var infowindowPoly = new google.maps.InfoWindow({
+        maxWidth: 500
+    });
     infowindowPoly.setContent(contentString);
     infowindowPoly.setPosition(event.latLng);
     infowindowPoly.open(map);
