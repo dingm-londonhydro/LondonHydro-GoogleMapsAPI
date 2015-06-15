@@ -259,15 +259,35 @@ function refreshMap(polygonArray, newUrl) {
 }
 
 /**
-*   Returns the current date and time
+*   Returns the current date in this format: e.g: June 9th 2015
 */
-function getDate() {
+function findDate() {
         var date = new Date();
         var month = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"][date.getMonth()];
-        var day = date.getDay();
-        var currDate = day + ' ' + month + ' ' + date.getFullYear();    
+        var day = date.getDate();
+        var suffix = ( day === 1 ) ? "st" : (day === 2) ? "nd" : (day === 3) ? "rd" : "th";
+        var currDate = month + ' ' + day + suffix + ' ' + date.getFullYear();    
         return currDate;
 }
+
+/**
+*   Returns current time in this format: e.g. 9:45 am
+*/
+function getTime() {
+    var now = new Date();
+    var hr = now.getHours();
+    var minArray = [];
+    minArray.push(now.getMinutes());
+    if (minArray.length === 1) {
+        minArray[1] = minArray[0];
+        minArray[0] = 0;
+    }
+    // Determine AM or PM suffix based on the hour
+    var suffix = ( hr < 12 ) ? "AM" : "PM";
+
+    var currTime = hr + ":" + minArray.join("") + " " + suffix;
+    return currTime;
+} 
 
 /**
 *   Initializes everything and creates the map, also calls the above functions
@@ -314,27 +334,31 @@ function initialize()
             {
                         map.setCenter(myLatlng);
             });
-
+        // sets a placeholder at first and then is removed
         // grabs the current time into string form
+        var currDate = findDate();
+        var currTime = getTime();
+        var timeLeft = 15;
+        var timeDiv = document.getElementById("time");
+        timeDiv.innerHTML = "<b> Outage map last updated on: </b>" + currDate + " at " + currTime + " (the next update is in " + timeLeft + " minute(s))"; 
+
         // we refresh every 15 min
         // writes it out on the DOM
-        var currDate = getDate();
-        var currTime = new Date().toLocaleTimeString()
-        var timeLeft = 15;
         setInterval(function() 
         {
           if (timeLeft === 0) 
           {
             refreshMap(polyArray, "http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml");
             timeLeft = 15;
-            currDate = getDate();
-            currTime = new Date().toLocaleTimeString();
+            currDate = findDate();
+            currTime = getTime();
           }
           timeLeft--;
-          document.getElementById("time").innerHTML = "<b> Outage map last updated on: </b>" + currDate + " at " + currTime + " (the next update is in " + timeLeft + " minute(s))"; 
-        }, 1000); 
+          timeDiv.innerHTML = "<b> Outage map last updated on: </b>" + currDate + " at " + currTime + " (the next update is in " + timeLeft + " minute(s))"; 
+        }, 60000); 
 
 }
+
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
