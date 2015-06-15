@@ -30,7 +30,26 @@ width: 983px;
     position: relative;
 }
 }
-@media (max-width: 500px) {
+@media (max-width: 500px) and (max-height: 500px) {
+.container{
+    width: 100%;
+}
+
+.infowindow {
+    font-size: 2em;
+}
+#map_container{
+    position: relative;
+}
+#map_canvas{
+    width: 100%;
+    overflow: hidden;
+    left: 0%;
+    top:0%;
+    position: relative;
+}
+}
+@media (max-width: 600px) {
 .infowindow {
     font-size: 2em;
 }
