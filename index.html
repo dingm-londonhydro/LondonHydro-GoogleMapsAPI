@@ -327,7 +327,7 @@ function initialize()
     var urlSuffix = (new Date).getTime().toString();
     var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
     layer.setMap(map);
-    getKML("http://mding5692.github.io/LondonHydro-GoogleMapsAPI/outages.kml");
+    getKML("http://dingm-londonhydro.github.io/LondonHydro-GoogleMapsAPI/outages.kml");
    
             // resizes the map when changing screen size
           google.maps.event.addDomListener(window, "resize", function() 
@@ -348,7 +348,7 @@ function initialize()
         {
           if (timeLeft === 0) 
           {
-            refreshMap(polyArray, "http://mding5692.github.io/LondonHydro-GoogleMapsAPI/test.kml");
+            refreshMap(polyArray, "http://dingm-londonhydro.github.io/LondonHydro-GoogleMapsAPI/outages.kml");
             timeLeft = 15;
             currDate = findDate();
             currTime = getTime();
