@@ -234,17 +234,14 @@
 						 * Takes the map, applicable for Google Maps API
 						 **/
 						 function suppressUnnecessayInfoWindows(mapUsed) {
-						 	// removes POIs off the map
-						 	var noPoi = [
+						 	// removes POIs and Transit features off the map
+						 	var noFeatures = [
 									{
 									    featureType: "poi",
 									    stylers: [
 									      { visibility: "off" }
 									    ]   
-									  }
-									];
-							// removes transit features off the map
-							var noTransit = [
+									  },
 									  {
 									    featureType: "transit",
 									    stylers: [
@@ -253,7 +250,7 @@
 									  }
 									];
 							// changes the style of the map so that the above is no longer visible
-							mapUsed.setOptions({styles: noPoi, noTransit});
+							mapUsed.setOptions({styles: noFeatures});
 						 }
 						 
 						/**
