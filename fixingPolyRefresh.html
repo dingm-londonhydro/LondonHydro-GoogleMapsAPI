@@ -300,7 +300,7 @@
 					        var timeLeft = 15;
 					        var timeDiv = document.getElementById("time");
 					        timeDiv.innerHTML = "<b> Outage map last updated on: </b>" + currDate + " at " + currTime + " (the next update is in " + timeLeft + " minute(s))"; 
-						    getKML("https://dingm-londonhydro.github.io/LondonHydro-GoogleMapsAPI/outages.kml");
+						    getKML("http://dingm-londonhydro.github.io/LondonHydro-GoogleMapsAPI/outages.kml");
 						   
 						            // resizes the map when changing screen size
 						          google.maps.event.addDomListener(window, "resize", function() 
@@ -314,7 +314,7 @@
 						        {
 						          if (timeLeft === 0) 
 						          {
-						            refreshMap(polyArray, "https://173.255.115.100/lhkmlcache/outage_polygons_live.kml");
+						            refreshMap(polyArray, "http://dingm-londonhydro.github.io/LondonHydro-GoogleMapsAPI/newOutages.kml");
 						            timeLeft = 15;
 						            currDate = findDate();
 						            currTime = getTime();
