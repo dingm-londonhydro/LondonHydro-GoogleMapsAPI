@@ -228,7 +228,34 @@
 						    }
 						    getKML(newUrl);
 						}
-
+						
+						/**
+						 * Remove all other unnecessary infowindows by rendering Points of Interest invisible
+						 * Takes the map, applicable for Google Maps API
+						 **/
+						 function suppressUnnecessayInfoWindows(mapUsed) {
+						 	// removes POIs off the map
+						 	var noPoi = [
+									{
+									    featureType: "poi",
+									    stylers: [
+									      { visibility: "off" }
+									    ]   
+									  }
+									];
+							// removes transit features off the map
+							var noTransit = [
+									  {
+									    featureType: "transit",
+									    stylers: [
+									      { visibility: "off" }
+									    ]   
+									  }
+									];
+							// changes the style of the map so that the above is no longer visible
+							mapUsed.setOptions({styles: noPoi, noTransit});
+						 }
+						 
 						/**
 						*   Returns the current date in this format: e.g: June 9th 2015
 						*/
@@ -271,15 +298,6 @@
 						        zoom: 11,
 						        center: myLatlng,
 						        mapTypeId: google.maps.MapTypeId.ROADMAP,
-						        styles: [
-								  {
-								    featureType: "poi.business",
-								    elementType: "labels",
-								    stylers: [
-								      { visibility: "off" }
-								    ]
-								  }
-								],
 						        scaleControl: true,
 						        zoomControl: true,
 						        // made the zoom small style
@@ -290,6 +308,7 @@
 						        mapTypeControl: false
 						    };
 						    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+						    suppressUnnecessayInfoWindows(map);
 						    var addLegendDiv = document.createElement('div');
 						    var legend = new AddBox(addLegendDiv, map);
 						    addLegendDiv.index = 1;
