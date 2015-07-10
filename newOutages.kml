@@ -165,7 +165,7 @@
 <styleUrl>#Style2</styleUrl>
 <ExtendedData>
 <SchemaData schemaUrl="#Schema1">
-<SimpleData name="ID1">122499</SimpleData>
+<SimpleData name="ID1">TEST KML 2</SimpleData>
 <SimpleData name="CUSTOMERS_OUT">3</SimpleData>
 <SimpleData name="EVENT_NUMBER">16810</SimpleData>
 <SimpleData name="OFF_DATETIME">2015-05-15T09:13:54</SimpleData>
@@ -195,7 +195,7 @@
 <styleUrl>#Style2</styleUrl>
 <ExtendedData>
 <SchemaData schemaUrl="#Schema1">
-<SimpleData name="ID1">122501</SimpleData>
+<SimpleData name="ID1">TEST KML @</SimpleData>
 <SimpleData name="CUSTOMERS_OUT">12</SimpleData>
 <SimpleData name="EVENT_NUMBER">16811</SimpleData>
 <SimpleData name="OFF_DATETIME">2015-05-15T15:05:06</SimpleData>
@@ -225,7 +225,7 @@
 <styleUrl>#Style2</styleUrl>
 <ExtendedData>
 <SchemaData schemaUrl="#Schema1">
-<SimpleData name="ID1">122497</SimpleData>
+<SimpleData name="ID1">TEST KML 2</SimpleData>
 <SimpleData name="CUSTOMERS_OUT">17</SimpleData>
 <SimpleData name="EVENT_NUMBER">16808</SimpleData>
 <SimpleData name="OFF_DATETIME">2015-05-15T09:07:30</SimpleData>
@@ -258,7 +258,7 @@
 <SimpleData name="ID1">122503</SimpleData>
 <SimpleData name="CUSTOMERS_OUT">3</SimpleData>
 <SimpleData name="EVENT_NUMBER">16812</SimpleData>
-<SimpleData name="OFF_DATETIME">2015-05-15T22:10:12</SimpleData>
+<SimpleData name="OFF_DATETIME">TEST KML</SimpleData>
 <SimpleData name="OUTAGE_AREA">1</SimpleData>
 <SimpleData name="ESTIMATED_RESTORE">2015-05-16T23:30:00</SimpleData>
 <SimpleData name="RESTORE_DATETIME"></SimpleData>
@@ -375,7 +375,7 @@
 <styleUrl>#Style1</styleUrl>
 <ExtendedData>
 <SchemaData schemaUrl="#Schema1">
-<SimpleData name="ID1">122513</SimpleData>
+<SimpleData name="ID1">This is cchanged</SimpleData>
 <SimpleData name="CUSTOMERS_OUT">14</SimpleData>
 <SimpleData name="EVENT_NUMBER">16809</SimpleData>
 <SimpleData name="OFF_DATETIME">2015-05-15T09:10:52</SimpleData>
