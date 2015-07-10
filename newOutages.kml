@@ -162,7 +162,7 @@
 <name></name>
 <Placemark>
 <name>16810</name>
-<styleUrl>#Style1</styleUrl>
+<styleUrl>#Style2</styleUrl>
 <ExtendedData>
 <SchemaData schemaUrl="#Schema1">
 <SimpleData name="ID1">122499</SimpleData>
@@ -192,7 +192,7 @@
 </Placemark>
 <Placemark>
 <name>16811</name>
-<styleUrl>#Style1</styleUrl>
+<styleUrl>#Style2</styleUrl>
 <ExtendedData>
 <SchemaData schemaUrl="#Schema1">
 <SimpleData name="ID1">122501</SimpleData>
@@ -222,7 +222,7 @@
 </Placemark>
 <Placemark>
 <name>16808</name>
-<styleUrl>#Style1</styleUrl>
+<styleUrl>#Style2</styleUrl>
 <ExtendedData>
 <SchemaData schemaUrl="#Schema1">
 <SimpleData name="ID1">122497</SimpleData>
@@ -471,7 +471,7 @@
 </Placemark>
 <Placemark>
 <name>16807</name>
-<styleUrl>#Style3</styleUrl>
+<styleUrl>#Style1</styleUrl>
 <ExtendedData>
 <SchemaData schemaUrl="#Schema4">
 <SimpleData name="ID1">122512</SimpleData>
