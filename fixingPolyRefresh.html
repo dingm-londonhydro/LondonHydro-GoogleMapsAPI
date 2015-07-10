@@ -73,6 +73,7 @@
 						*   attributes for each polygon and then drawing it on the map
 						*/ 
 						function attachInfoWindow(newPoly, objArray, i) {
+						  return function(event) {
 						    var eventNo = newPoly.get("eventNum");
 						    var outTime = newPoly.get("offTime");
 						    var resTime = objArray[i].restoreTime;
@@ -95,6 +96,7 @@
 						    google.maps.event.addListener(map, 'click', function() {
 						      infowindowPoly.close();
 						    });
+						  };
 						}
 						    
 						     /** Calls using xmlhttprequest to grab the kml file
