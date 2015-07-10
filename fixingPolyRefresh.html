@@ -289,7 +289,7 @@
 						    var kmlPath = "https://173.255.115.100/lhkmlcache/service_territory.kml";
 						    // Add unique number to this url - as with images - to avoid caching issues during development
 						    var urlSuffix = (new Date).getTime().toString();
-						    var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
+						    var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix, { clickable: false, suppressInfoWindows: false} );
 						    layer.setMap(map);
 						    // sets a placeholder at first and then is removed
 					        // grabs the current time into string form
