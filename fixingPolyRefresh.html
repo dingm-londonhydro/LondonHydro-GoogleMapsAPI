@@ -72,11 +72,11 @@
 						*   Attaches infowindows by setting stuff from an array of objects as
 						*   attributes for each polygon and then drawing it on the map
 						*/ 
-						function attachInfoWindow(newPoly, objArray, i) {
+						function attachInfoWindow(newPoly) {
 						  return function(event) {
 						    var eventNo = newPoly.get("eventNum");
 						    var outTime = newPoly.get("offTime");
-						    var resTime = objArray[i].restoreTime;
+						    var resTime = newPoly.get("restoreTime");
 						    var contentString = "<div class='infowindow'> Event Number: " + eventNo + "<br> Outage Time: " + outTime + "<br> Estimated Restoration Time: " + resTime + "</div>";
 						    var infowindowPoly = new google.maps.InfoWindow({
 						        maxWidth: 500
@@ -91,8 +91,6 @@
 						        infoWindowArray[0] = infoWindowArray[1];
 						        infoWindowArray.pop();
 						    }
-
-						    polyArray.push(newPoly);
 						    google.maps.event.addListener(map, 'click', function() {
 						      infowindowPoly.close();
 						    });
@@ -209,9 +207,9 @@
 						              newPoly.set("eventNum",objArray[i].eventID);
 						              newPoly.set("offTime", objArray[i].offTime);
 						              newPoly.set("resTime", objArray[i].restoreTime);
-
-						              google.maps.event.addListener(newPoly, 'click', attachInfoWindow(newPoly, objArray, i)); 
-						            
+				
+						              google.maps.event.addListener(newPoly, 'click', attachInfoWindow(newPoly)); 
+						              polyArray.push(newPoly);
 						        }
 						    }
 
