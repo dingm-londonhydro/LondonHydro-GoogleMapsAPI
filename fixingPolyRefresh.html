@@ -271,6 +271,15 @@
 						        zoom: 11,
 						        center: myLatlng,
 						        mapTypeId: google.maps.MapTypeId.ROADMAP,
+						        styles = [
+								  {
+								    featureType: "poi.business",
+								    elementType: "labels",
+								    stylers: [
+								      { visibility: "off" }
+								    ]
+								  }
+								],
 						        scaleControl: true,
 						        zoomControl: true,
 						        // made the zoom small style
