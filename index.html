@@ -347,10 +347,12 @@ function initialize()
     // This needs to be the Full URL - not a relative URL
     var kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
     suppressUnnecessayInfoWindows(map);
-    var layer = new google.maps.KmlLayer({
-        url: kmlPath,
-        map: map
-    });
+	var layer = new google.maps.KmlLayer({
+		url: kmlPath,
+		map: map,
+		clickable : false,
+		suppressInfoWindows : false
+	});;
     getKML("http://dingm-londonhydro.github.io/LondonHydro-GoogleMapsAPI/outages.kml");
    
             // resizes the map when changing screen size
