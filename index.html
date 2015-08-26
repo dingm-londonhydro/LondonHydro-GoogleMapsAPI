@@ -290,6 +290,29 @@ function getTime() {
 } 
 
 /**
+ * Remove all other unnecessary infowindows by rendering Points of Interest invisible
+ * Takes the map, applicable for Google Maps API
+ **/
+function suppressUnnecessayInfoWindows(mapUsed) {
+	// removes POIs and Transit features off the map
+	var noFeatures = [ {
+		featureType : "poi",
+		stylers : [ {
+			visibility : "off"
+		} ]
+	}, {
+		featureType : "transit",
+		stylers : [ {
+			visibility : "off"
+		} ]
+	} ];
+	// changes the style of the map so that the above is no longer visible
+	mapUsed.setOptions({
+		styles : noFeatures
+	});
+}
+
+/**
 *   Initializes everything and creates the map, also calls the above functions
 */
 function initialize() 
@@ -323,8 +346,7 @@ function initialize()
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(addLegendDiv);
     // This needs to be the Full URL - not a relative URL
     var kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
-    // Add unique number to this url - as with images - to avoid caching issues during development
-    var urlSuffix = (new Date).getTime().toString();
+    suppressUnnecessayInfoWindows(map);
     var layer = new google.maps.KmlLayer({
         url: kmlPath,
         map: map
