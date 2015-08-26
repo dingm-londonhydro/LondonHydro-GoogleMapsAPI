@@ -325,7 +325,7 @@ function initialize()
     var kmlPath = "http://storage.googleapis.com/cloud-sql-dev/territory_polygon.kml";
     // Add unique number to this url - as with images - to avoid caching issues during development
     var urlSuffix = (new Date).getTime().toString();
-    var layer = new google.maps.KmlLayer(kmlPath + '?' + urlSuffix );
+    var layer = new google.maps.KmlLayer(kmlPath );
     layer.setMap(map);
     getKML("http://dingm-londonhydro.github.io/LondonHydro-GoogleMapsAPI/outages.kml");
    
